@@ -1,4 +1,8 @@
 {
+  "name": "design-skills-marketplace",
+  "owner": {
+    "name": "muthuveerapandi"
+  },
   "plugins": [
     {
       "name": "design-skills",
