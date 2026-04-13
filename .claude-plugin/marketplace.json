@@ -1,8 +1,11 @@
 {
-    "plugins": [
-      {
-        "name": "design-skills",
-        "repo": "https://github.com/muthuveerapandi-s-2874/design-skills"
+  "plugins": [
+    {
+      "name": "design-skills ",
+      "source": {
+        "type": "github",
+        "repo": "muthuveerapandi-s-2874/design-skills"
       }
-    ]
-  }
+    }
+  ]
+}
