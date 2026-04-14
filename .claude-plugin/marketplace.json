@@ -1,12 +1,12 @@
 {
-  "name": "design-skills-marketplace",
   "plugins": [
     {
       "name": "design-skills",
       "source": {
-        "type": "github",
-        "owner": "muthuveerapandi-s-2874",
-        "repo": "Design-skills"
+        "github": {
+          "owner": "muthuveerapandi-s-2874",
+          "repo": "Design-skills"
+        }
       }
     }
   ]
