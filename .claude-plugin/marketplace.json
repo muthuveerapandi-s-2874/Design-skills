@@ -4,14 +4,10 @@
       "name": "Muthu",
       "email": "muthu@example.com"
     },
-    "metadata": {
-      "description": "AI-powered design skills marketplace",
-      "version": "1.0.0"
-    },
     "plugins": [
       {
         "name": "design-skills",
-        "description": "Design thinking and UI system skills",
+        "description": "AI design skills",
         "source": {
           "github": {
             "owner": "muthuveerapandi-s-2874",
@@ -19,7 +15,10 @@
             "branch": "main"
           }
         },
-        "strict": false
+        "strict": false,
+        "skills": [
+          "ui-thinking"
+        ]
       }
     ]
   }
