@@ -11,9 +11,10 @@ curl -L https://raw.githubusercontent.com/muthuveerapandi-s-2874/Design-skills/m
 
 # Create command
 echo '#!/bin/bash
-node $HOME/.my-tool/index.js "$@"' > /usr/local/bin/mytool
+node "$HOME/.my-tool/index.js" "$@"' | sudo tee /usr/local/bin/mytool > /dev/null
 
-chmod +x /usr/local/bin/mytool
+# Make executable
+sudo chmod +x /usr/local/bin/mytool
 
 echo "✅ Installed successfully!"
 echo "👉 Run: mytool"
