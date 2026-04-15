@@ -1,9 +1,25 @@
 {
     "name": "design-skills-marketplace",
+    "owner": {
+      "name": "Muthu",
+      "email": "muthu@example.com"
+    },
+    "metadata": {
+      "description": "AI-powered design skills marketplace",
+      "version": "1.0.0"
+    },
     "plugins": [
       {
         "name": "design-skills",
-        "source": "muthuveerapandi-s-2874/Design-skills"
+        "description": "Design thinking and UI system skills",
+        "source": {
+          "github": {
+            "owner": "muthuveerapandi-s-2874",
+            "repo": "Design-skills",
+            "branch": "main"
+          }
+        },
+        "strict": false
       }
     ]
   }
