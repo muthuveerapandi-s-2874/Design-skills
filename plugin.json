@@ -1,6 +1,11 @@
 {
-  "name": "Design skills",
+  "name": "design-skills",
   "version": "1.0.0",
-  "description": "Test plugin",
-  "main": "index.js"
+  "description": "AI-powered design thinking toolkit",
+  "main": "index.js",
+  "commands": {
+    "ui-thinking": "node index.js ui-thinking",
+    "design-lang": "node index.js design-lang",
+    "theme": "node index.js theme"
+  }
 }
