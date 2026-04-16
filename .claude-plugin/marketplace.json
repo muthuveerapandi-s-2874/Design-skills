@@ -1,20 +1,25 @@
 {
-    "name": "design-skills-marketplace",
-    "owner": {
-      "name": "Muthu",
-      "email": "muthu@example.com"
-    },
-    "plugins": [
-      {
-        "name": "design-skills",
-        "description": "AI design skills",
-        "source": {
-          "github": {
-            "owner": "muthuveerapandi-s-2874",
-            "repo": "Design-skills",
-            "branch": "main"
-          }
-        }
-      }
-    ]
-  }
+  "name": "design-skills-marketplace",
+  "owner": {
+    "name": "Muthu",
+    "url": "https://github.com/muthuveerapandi-s-2874"
+  },
+  "metadata": {
+    "description": "AI-powered design skills for UI, systems, and themes",
+    "version": "1.0.0",
+    "repository": "https://github.com/muthuveerapandi-s-2874/design-skills-marketplace"
+  },
+  "plugins": [
+    {
+      "name": "design-skills",
+      "description": "UI thinking, design language, and theme generation skills",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/ui-thinking",
+        "./skills/design-lang",
+        "./skills/zoho-theme-factory"
+      ]
+    }
+  ]
+}
