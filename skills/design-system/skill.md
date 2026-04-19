@@ -1,7 +1,7 @@
 ---
-   name: ods-guideline
-   description: Apply Zoho ODS design tokens (colors, spacing, typography, radius) when building any UI, component, webpage, or artifact that should follow ODS branding. Use whenever the user asks for Zoho-branded UI, ODS-compliant components, or references "our design system."
-   ---
+name: ods-guideline
+description: Apply Zoho ODS design tokens (colors, spacing, typography, radius) when building any UI, component, webpage, or artifact that should follow ODS branding. Use whenever the user asks for Zoho-branded UI, ODS-compliant components, or references the ODS design system.
+---
 
 # DESIGN.md — ODS_Guideline
 
