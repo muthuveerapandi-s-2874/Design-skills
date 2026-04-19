@@ -1,6 +1,6 @@
 Use the ODS Design System defined in:
 
-.claude/context/DESIGN.md
+context/DESIGN.md
 
 Rules:
 - Always follow tokens, spacing, typography from DESIGN.md
