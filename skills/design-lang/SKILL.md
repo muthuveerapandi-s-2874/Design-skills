@@ -1,18 +1,28 @@
-Apply Zoho's ODS visual language — composition, motion, cinematic spacing, warm palette, graphic elements, illustration, photography direction, and aesthetic craft — to pages that feel premium, editorial, and human. Use this skill whenever someone asks for a Zoho landing page, marketing page, or banner to "feel premium", "feel human", "look world-class", "use illustration", "add photography", "use warm colors", "use beige", "add texture", "add patterns", or "not look AI-generated". This skill governs HOW things are arranged, colored, illustrated, and animated — always using exact ODS tokens. Never override brand tokens.
-
-
+---
+name: ods-visual-language
+description: >
+  Apply Zoho's ODS visual language — composition, motion, cinematic spacing, warm
+  palette, graphic elements, illustration, photography direction, and aesthetic craft
+  — to pages that feel premium, editorial, and human. Use this skill whenever someone
+  asks for a Zoho landing page, marketing page, or banner to "feel premium", "feel
+  human", "look world-class", "use illustration", "add photography", "use warm colors",
+  "use beige", "add texture", "add patterns", or "not look AI-generated". This skill
+  governs HOW things are arranged, colored, illustrated, and animated — always using
+  exact ODS tokens. Never override brand tokens.
+---
+ 
 # ODS Visual Language Skill
-
+ 
 **The mandate:** Pages that feel like a senior human designer made them —
 using *only* ODS brand tokens. The craft is in restraint, spatial rhythm,
 typographic courage, and motion that earns its place.
-
+ 
 ---
-
+ 
 ## NON-NEGOTIABLE: ODS Brand Lock
-
+ 
 These are **never** changed for visual style reasons:
-
+ 
 | Token | Value | Rule |
 |-------|-------|------|
 | Font | `'Zoho Puvi', sans-serif` | No substitution ever |
@@ -23,19 +33,19 @@ These are **never** changed for visual style reasons:
 | Accent | `#09ABFF` (lightBlue-500) | Only for accents |
 | Border radius | 2 / 4 / 8 / 16 / 160px | No arbitrary values |
 | Btn radius | 4px always | Never pill, never 0 |
-
+ 
 **What this skill changes:** composition, spacing scale, how type is sized
 within ODS scale, motion, section rhythm, depth — not the tokens themselves.
-
+ 
 ---
-
+ 
 ## Part 1 — ODS Typography Used With Courage
-
+ 
 The ODS type scale is large. Most pages undersell it. Premium pages use
 the scale's full range — the H1 (88px) actually dominates the viewport.
-
+ 
 ### Exact ODS Tracking Values (from Figma — use these precisely)
-
+ 
 | Size | Line-height | Tracking | Weight use |
 |------|-------------|----------|------------|
 | 88px (H1) | 96px | `-4%` = `-3.52px` | 500 or 700 |
@@ -48,14 +58,14 @@ the scale's full range — the H1 (88px) actually dominates the viewport.
 | 24px (para/reg) | 32px | `-2%` = `-0.48px` | 400 |
 | 20px (para/sm) | 28px | `-2%` = `-0.4px` | 400 |
 | 16px (label) | 24px | `-2%` = `-0.32px` | 500 |
-
+ 
 > Tracking in ODS is expressed as % of font-size. Convert: `88 × -0.04 = -3.52px`.
-
+ 
 ### Column Discipline — What Makes Type Feel Editorial
 **Constraining headlines to a column width forces expressive line breaks.**
 Even at 88px, a headline constrained to `max-width: 12–14ch` forces expressive
 line breaks. Without this, even the right font size feels generic.
-
+ 
 ```css
 /* Hero headline — ODS H1 with column control */
 .hero-h1 {
@@ -67,7 +77,7 @@ line breaks. Without this, even the right font size feels generic.
   color: #262626;               /* ODS grey-900 */
   max-width: 14ch;              /* force meaningful line breaks */
 }
-
+ 
 /* Section headline — H2 with restraint */
 .section-h2 {
   font-family: 'Zoho Puvi', sans-serif;
@@ -78,7 +88,7 @@ line breaks. Without this, even the right font size feels generic.
   color: #262626;
   max-width: 16ch;
 }
-
+ 
 /* Supporting body — never wider than 60ch */
 .body-text {
   font-family: 'Zoho Puvi', sans-serif;
@@ -89,7 +99,7 @@ line breaks. Without this, even the right font size feels generic.
   color: #595959;               /* ODS grey-500 */
   max-width: 60ch;
 }
-
+ 
 /* Eyebrow — premium signal above headlines */
 .eyebrow {
   font-family: 'Zoho Puvi', sans-serif;
@@ -101,20 +111,19 @@ line breaks. Without this, even the right font size feels generic.
   color: #0047FF;               /* ODS blue-500 */
 }
 ```
-
+ 
 ### Type Hierarchy That Feels Human (not template)
 - **ONE H1 per page.** Never more. It must dominate.
 - **Eyebrow → H1 → body → CTA** is the sacred sequence. Don't skip levels.
 - **Center-align headlines only** — body copy is always left-aligned.
 - **Never float body copy at full container width** — `max-width: 60ch` always.
-
 ---
-
+ 
 ## Part 2 — Spatial Rhythm (The ODS Grid, Used Generously)
-
+ 
 ODS grid has 40px margins at all breakpoints. The craft is in section padding
 and vertical rhythm — this is where world-class pages feel different.
-
+ 
 ```css
 :root {
   /* Section vertical padding — generous, cinematic */
@@ -122,17 +131,17 @@ and vertical rhythm — this is where world-class pages feel different.
   --section-lg:  120px;   /* standard feature sections */
   --section-md:   80px;   /* tighter supporting sections */
   --section-sm:   56px;   /* compact bands (stats, logos) */
-
+ 
   /* Within-section vertical stack — using ODS spacing tokens */
   --stack-eyebrow-to-h1:  24px;   /* ODS Md-1 */
   --stack-h1-to-body:     40px;   /* ODS Md-3 */
   --stack-body-to-cta:    48px;   /* ODS Md-4 */
   --stack-cta-to-visual:  80px;   /* ODS Lg-2 */
 }
-
+ 
 .section { padding-block: var(--section-lg); }
 .section-hero { padding-block: var(--section-xl); }
-
+ 
 @media (max-width: 992px) {
   :root { --section-xl: 120px; --section-lg: 80px; }
 }
@@ -140,19 +149,19 @@ and vertical rhythm — this is where world-class pages feel different.
   :root { --section-xl: 80px; --section-lg: 56px; }
 }
 ```
-
+ 
 ### The "Breathe" Test
 When layout feels complete → add one more level of padding. Ask: does it feel
 like it has room? The best pages are 60–80% empty by area. The content lands
 harder because it's not competing with noise.
-
+ 
 ---
-
+ 
 ## Part 3 — Section Rhythm (The Page Has Chapters)
-
+ 
 Alternating section backgrounds create contrast rhythm — each section feels
 distinct. Use this exact sequence:
-
+ 
 ```
 Hero        → white (#FFFFFF) — open, premier
 Feature 1   → grey-50 (#F5F5F5) — grounded
@@ -162,10 +171,10 @@ Testimonial → white (#FFFFFF) — recovery, trust
 CTA band    → blue-500 (#0047FF) — conversion close
 Footer      → grey-50 (#F5F5F5) — grounded end
 ```
-
+ 
 **Dark sections are not dark mode** — they're deliberate contrast beats.
 One or two per page maximum. They make the surrounding white sections feel brighter.
-
+ 
 ```css
 /* Dark beat section — premium moment */
 .section-dark {
@@ -177,11 +186,11 @@ One or two per page maximum. They make the surrounding white sections feel brigh
   background: #000719;          /* ODS blue-950 */
   color: #FFFFFF;
 }
-
+ 
 .section-dark h2 { color: #FFFFFF; }
 .section-dark p  { color: rgba(255, 255, 255, 0.65); } /* NOT pure white — harsh */
 .section-dark .eyebrow { color: #09ABFF; }             /* ODS lightBlue-500 on dark */
-
+ 
 /* Dark glass card — enterprise/developer aesthetic */
 .dark-card {
   background: rgba(255, 255, 255, 0.04);
@@ -196,14 +205,14 @@ One or two per page maximum. They make the surrounding white sections feel brigh
   border-color: rgba(0, 71, 255, 0.4);   /* ODS blue-500 at 40% */
 }
 ```
-
+ 
 ---
-
+ 
 ## Part 4 — The Cinematic Moment
-
+ 
 Every page needs ONE section that stops the user cold. Choose one technique —
 never combine. This is the section that feels hand-crafted.
-
+ 
 ### Technique A: Type Fills the Viewport
 ODS H1 at full scale, centered on dark background. No illustration needed.
 ```css
@@ -231,7 +240,7 @@ ODS H1 at full scale, centered on dark background. No illustration needed.
   background-clip: text;
 }
 ```
-
+ 
 ### Technique B: Full-Bleed Visual + Anchored Text
 Real product screenshot bleeds edge-to-edge. Text floats anchored bottom-left.
 ```css
@@ -259,7 +268,7 @@ Real product screenshot bleeds edge-to-edge. Text floats anchored bottom-left.
   background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
 }
 ```
-
+ 
 ### Technique C: Sticky Scroll Narrative
 Visual stays fixed while feature copy scrolls past it. Most powerful for
 multi-feature products. Requires JS to swap the visual per scroll-step.
@@ -286,7 +295,7 @@ multi-feature products. Requires JS to swap the visual per scroll-step.
   padding: 64px 48px;
 }
 ```
-
+ 
 ### Technique D: Kinetic Marquee Strip
 Running text strip between two sections — brand rhythm, not content.
 ```css
@@ -313,7 +322,7 @@ Running text strip between two sections — brand rhythm, not content.
   to   { transform: translateX(-50%); }
 }
 ```
-
+ 
 ### Technique E: Oversized Stat Escaping the Grid
 One number so large it intentionally breaks out of its column. Creates tension.
 ```css
@@ -334,20 +343,20 @@ One number so large it intentionally breaks out of its column. Creates tension.
   margin-top: 12px;              /* ODS Sm-3 */
 }
 ```
-
+ 
 ---
-
+ 
 ## Part 5 — Motion Principles
-
+ 
 Motion must reveal, not decorate. Every animation should make content feel
 *earned* when it appears — as if it arrived for a reason.
-
+ 
 ```css
 :root {
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);  /* fast decel — cinematic feel */
   --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1); /* subtle overshoot */
 }
-
+ 
 /* 1. Scroll reveal — standard for all content sections */
 .reveal {
   opacity: 0;
@@ -356,14 +365,14 @@ Motion must reveal, not decorate. Every animation should make content feel
               transform 700ms var(--ease-out-expo);
 }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
-
+ 
 /* Stagger children — 80ms between each item */
 .reveal-group > *:nth-child(1) { transition-delay:   0ms; }
 .reveal-group > *:nth-child(2) { transition-delay:  80ms; }
 .reveal-group > *:nth-child(3) { transition-delay: 160ms; }
 .reveal-group > *:nth-child(4) { transition-delay: 240ms; }
 .reveal-group > *:nth-child(5) { transition-delay: 320ms; }
-
+ 
 /* 2. Card hover lift — uses ODS elevation/large shadow */
 .card-lift {
   transition: transform 300ms var(--ease-out-expo),
@@ -374,11 +383,11 @@ Motion must reveal, not decorate. Every animation should make content feel
   transform: translateY(-6px);
   box-shadow: 0px 40px 80px -16px rgba(0, 0, 0, 0.16); /* ODS Elevation/large */
 }
-
+ 
 /* 3. ODS button press feel */
 .btn { transition: transform 100ms ease, background-color 150ms ease; }
 .btn:active { transform: scale(0.97); }
-
+ 
 /* 4. Underline draw on text links */
 .link-draw {
   background: linear-gradient(#0047FF, #0047FF) bottom / 0% 2px no-repeat;
@@ -387,7 +396,7 @@ Motion must reveal, not decorate. Every animation should make content feel
 }
 .link-draw:hover { background-size: 100% 2px; }
 ```
-
+ 
 ```javascript
 // Scroll reveal — activate .reveal elements as they enter viewport
 const revealObserver = new IntersectionObserver((entries) => {
@@ -397,7 +406,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 ```
-
+ 
 ### Motion Rules
 - Scroll reveals only — no animations on page load
 - All reveals travel **upward** (`translateY(40px)` → `0`) — never sideways or zoom
@@ -405,13 +414,12 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 - `300ms` for hover — fast enough to feel responsive
 - Stagger at **80ms** per item — synchronised = PowerPoint, staggered = choreography
 - **One cinematic technique per page** — chose from Part 4 and commit
-
 ---
-
+ 
 ## Part 6 — Layout Depth Tricks
-
+ 
 These are composition techniques — no new colors or fonts introduced.
-
+ 
 ### The Bleed — makes pages feel bigger than the grid
 ```css
 /* Screenshot overflows right edge of the viewport */
@@ -419,7 +427,7 @@ These are composition techniques — no new colors or fonts introduced.
   margin-right: calc(-1 * (100vw - 100%) / 2);
   border-radius: 8px 0 0 8px;     /* ODS radius/md only on left side */
 }
-
+ 
 /* Visual overlaps into the next section */
 .bleed-bottom {
   margin-bottom: -80px;            /* ODS Lg-2 — but negative */
@@ -427,7 +435,7 @@ These are composition techniques — no new colors or fonts introduced.
   z-index: 2;
 }
 ```
-
+ 
 ### The Card Stack — depth illusion using CSS only
 ```css
 .card-stack { position: relative; }
@@ -450,7 +458,7 @@ These are composition techniques — no new colors or fonts introduced.
   z-index: -2; opacity: 0.3;
 }
 ```
-
+ 
 ### Stats Grid — editorial, structured
 ```css
 .stats-grid {
@@ -464,7 +472,7 @@ These are composition techniques — no new colors or fonts introduced.
 }
 .stat-item:last-child { border-right: none; }
 ```
-
+ 
 ### Background Textures (max 5% opacity — never compete with content)
 ```css
 /* Dot pattern — precision/enterprise feel */
@@ -487,14 +495,14 @@ These are composition techniques — no new colors or fonts introduced.
   /* Uses ODS blue-50 and lightBlue-50 only */
 }
 ```
-
+ 
 ---
-
+ 
 ## Part 7 — ODS Blue: Signal, Not Wallpaper
-
+ 
 `#0047FF` is the most powerful element on the page. Use it like a highlighter —
 the moment you deploy it becomes the most important thing the eye goes to.
-
+ 
 | Correct use | Incorrect use |
 |-------------|---------------|
 | One word in a dark headline | Full headline in blue |
@@ -503,11 +511,11 @@ the moment you deploy it becomes the most important thing the eye goes to.
 | Full-width CTA band (once per page) | Multiple sections with blue bg |
 | One icon in a feature group | All icons in blue |
 | Left border on a testimonial card | Blue card backgrounds |
-
+ 
 ---
-
+ 
 ## Part 8 — What Makes It Look AI-Generated (Avoid These)
-
+ 
 ❌ H1 at 48px or less — ODS has 88px, use it  
 ❌ All sections the same padding height — alternate section-xl / section-lg / section-sm  
 ❌ Body copy centered at full container width — always `max-width: 60ch`, left-aligned  
@@ -518,27 +526,26 @@ the moment you deploy it becomes the most important thing the eye goes to.
 ❌ Placeholder illustrations — real product UI screenshots or real photos only  
 ❌ Two CTAs of identical visual weight — one primary, one ghost/secondary always  
 ❌ More than one cinematic technique per page — pick one and fully commit  
-
+ 
 ---
-
+ 
 ## Part 9 — Dark Cosmic + Glassmorphism Aesthetic
-
+ 
 This pattern set captures a specific visual register: **dark atmospheric backgrounds,
 glowing radial orbs, frosted glass product UI cards, and confident punchy headlines**.
 All implemented using ODS tokens only — no new colors introduced.
-
+ 
 ### When to Use This Register
 - AI-powered product pages
 - Enterprise/SaaS product suites
 - Sections where the product UI is the hero visual
 - Pages targeting technical or enterprise buyers
-
 ---
-
+ 
 ### 9a — Cosmic Dark Hero
-
+ 
 Dark hero where product UI floats inside a glowing atmospheric space.
-
+ 
 ```css
 .hero-cosmic {
   background: #000719;               /* ODS blue-950 — deepest dark */
@@ -547,7 +554,7 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   padding-block: 160px 0;
   padding-inline: 40px;
 }
-
+ 
 /* Radial glow orbs — using ODS blue palette only */
 .hero-cosmic::before {
   content: '';
@@ -562,7 +569,7 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   pointer-events: none;
   z-index: 0;
 }
-
+ 
 .hero-cosmic-content {
   position: relative;
   z-index: 1;
@@ -570,7 +577,7 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   max-width: 900px;
   margin-inline: auto;
 }
-
+ 
 /* Badge pill — floats above headline */
 .hero-badge {
   display: inline-flex;
@@ -586,7 +593,7 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   color: #9AB6FF;                     /* ODS blue-200 — soft on dark */
   margin-bottom: 32px;
 }
-
+ 
 /* Multi-statement headline — alternating bright/dim lines */
 .hero-cosmic h1 {
   font-family: 'Zoho Puvi', sans-serif;
@@ -598,12 +605,12 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   max-width: 14ch;
   margin-inline: auto;
 }
-
+ 
 /* Each statement line separated — not one run-on */
 .hero-cosmic h1 .line-dim {
   color: rgba(255,255,255,0.45);     /* dimmed lines create rhythm */
 }
-
+ 
 .hero-cosmic p {
   font-family: 'Zoho Puvi', sans-serif;
   font-size: 24px;
@@ -615,7 +622,7 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   margin-top: 32px;
 }
 ```
-
+ 
 **Headline pattern** — alternating bright / dim lines creates a statement rhythm:
 ```html
 <h1>
@@ -624,13 +631,13 @@ Dark hero where product UI floats inside a glowing atmospheric space.
   <span class="line-bright">One seamless suite.</span>
 </h1>
 ```
-
+ 
 ---
-
+ 
 ### 9b — Floating Product UI in Dark Space
-
+ 
 Product screenshot floats above the dark hero — slightly luminous, with a glow halo.
-
+ 
 ```css
 .hero-product-float {
   position: relative;
@@ -638,18 +645,18 @@ Product screenshot floats above the dark hero — slightly luminous, with a glow
   z-index: 1;
   border-radius: 8px 8px 0 0;        /* ODS radius/md — only top corners */
   overflow: hidden;
-
+ 
   /* Luminous glow behind the product — ODS blue-500 at low opacity */
   filter: drop-shadow(0 0 80px rgba(0,71,255,0.25))
           drop-shadow(0 40px 80px rgba(0,0,0,0.6));
 }
-
+ 
 .hero-product-float img {
   width: 100%;
   display: block;
   border-radius: 8px 8px 0 0;
 }
-
+ 
 /* Frosted edge — product fades into the hero bg at bottom */
 .hero-product-float::after {
   content: '';
@@ -659,13 +666,13 @@ Product screenshot floats above the dark hero — slightly luminous, with a glow
   background: linear-gradient(to bottom, transparent, #000719);
 }
 ```
-
+ 
 ---
-
+ 
 ### 9c — Dark Glass Feature Card
-
+ 
 Cards that feel like frosted glass floating in dark space. For feature grids on dark bg.
-
+ 
 ```css
 .glass-card-dark {
   background: rgba(255,255,255,0.04);
@@ -677,7 +684,7 @@ Cards that feel like frosted glass floating in dark space. For feature grids on 
   backdrop-filter: blur(12px);
   transition: border-color 300ms ease, background 300ms ease;
 }
-
+ 
 /* Subtle top-edge glow on hover */
 .glass-card-dark:hover {
   border-color: rgba(0,71,255,0.35);  /* ODS blue-500 */
@@ -697,7 +704,7 @@ Cards that feel like frosted glass floating in dark space. For feature grids on 
   transition: opacity 300ms ease;
 }
 .glass-card-dark:hover::before { opacity: 1; }
-
+ 
 .glass-card-dark .card-icon {
   width: 48px; height: 48px;
   background: rgba(0,71,255,0.15);    /* ODS blue-500 tint */
@@ -728,19 +735,19 @@ Cards that feel like frosted glass floating in dark space. For feature grids on 
   color: rgba(255,255,255,0.55);
 }
 ```
-
+ 
 ---
-
+ 
 ### 9d — Tabbed Feature Section
-
+ 
 One product visual area, tabs switch the feature shown. The most characteristic
 section pattern — communicates depth without overwhelming the user.
-
+ 
 ```css
 .feature-tabs-section {
   padding-block: 120px;
 }
-
+ 
 .tab-nav {
   display: flex;
   gap: 4px;
@@ -748,7 +755,7 @@ section pattern — communicates depth without overwhelming the user.
   border-bottom: 1px solid #D1D1D1;   /* ODS grey-200 */
   padding-bottom: 0;
 }
-
+ 
 .tab-btn {
   font-family: 'Zoho Puvi', sans-serif;
   font-size: 16px;
@@ -770,10 +777,10 @@ section pattern — communicates depth without overwhelming the user.
 .tab-btn:hover:not(.active) {
   color: #262626;                     /* ODS grey-900 */
 }
-
+ 
 .tab-panel { display: none; }
 .tab-panel.active { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: center; }
-
+ 
 /* Dark variant — same structure, dark bg */
 .feature-tabs-dark .tab-nav {
   border-bottom-color: rgba(255,255,255,0.1);
@@ -782,13 +789,13 @@ section pattern — communicates depth without overwhelming the user.
 .feature-tabs-dark .tab-btn.active { color: #FFFFFF; border-bottom-color: #0047FF; }
 .feature-tabs-dark .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
 ```
-
+ 
 ---
-
+ 
 ### 9e — Inline Testimonial (No Card Border)
-
+ 
 Testimonial presented as pure typography — no card, no box. More editorial, more trusted.
-
+ 
 ```css
 .testimonial-inline {
   padding-block: 80px;
@@ -832,13 +839,13 @@ Testimonial presented as pure typography — no card, no box. More editorial, mo
   color: #595959;                    /* ODS grey-500 */
 }
 ```
-
+ 
 ---
-
+ 
 ### 9f — Competitor Comparison Bar
-
+ 
 Horizontal bar chart comparing metrics. Use for competitive ranking or stat comparisons.
-
+ 
 ```css
 .compare-bars {
   display: flex;
@@ -880,14 +887,14 @@ Horizontal bar chart comparing metrics. Use for competitive ranking or stat comp
 }
 .compare-value.competitor { color: #595959; }
 ```
-
+ 
 ---
-
+ 
 ### 9g — Section Banner Image (Atmospheric Divider)
-
+ 
 Full-width atmospheric image used as a section opener — not hero, not background.
 Use between major content sections to create visual breathing room.
-
+ 
 ```css
 .section-banner {
   width: 100%;
@@ -901,7 +908,7 @@ Use between major content sections to create visual breathing room.
   object-fit: cover;
   object-position: center;
 }
-
+ 
 /* Optional: subtle dark overlay for text legibility if copy floats over it */
 .section-banner-overlay {
   position: relative;
@@ -917,14 +924,14 @@ Use between major content sections to create visual breathing room.
   border-radius: 16px;
 }
 ```
-
+ 
 ---
-
+ 
 ### 9h — Dark + Light Section Rhythm
-
+ 
 Dark atmospheric sections alternating with clean white sections — more
 dramatic than the standard grey-50 / white flip:
-
+ 
 ```
 Hero         → blue-950 (#000719) — cosmic dark, glowing
 "Built to work together" → white — clean contrast recovery  
@@ -933,25 +940,25 @@ Fin AI       → blue-950 (#000719) — dark again — product drama
 One Suite    → white — trust, convergence  
 CTA          → blue-500 (#0047FF) — conversion  
 ```
-
+ 
 **Key rule:** Dark sections open with a **full-width atmospheric banner image**,
 then content below. White sections lead directly with type. Never the opposite.
-
+ 
 ---
-
+ 
 ## Part 10 — Page-Level Layout Structures
-
+ 
 These are complete **page structure blueprints** — how sections stack, how grids
 split, how the eye travels top to bottom. Each is drawn from a distinct visual
 register. Use one blueprint per page and build every section within it.
-
+ 
 ---
-
+ 
 ### Blueprint A — Product Homepage
-
+ 
 **Rhythm:** Bold split hero → category selector → horizontal product strip →
 alternating feature rows → social proof → full-width CTA
-
+ 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  NAV — logo left, links center, CTA right                       │
@@ -987,7 +994,7 @@ alternating feature rows → social proof → full-width CTA
 │  FOOTER — grey-50 bg                                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
+ 
 **Key CSS — Category Selector**
 ```css
 .category-nav {
@@ -1014,11 +1021,11 @@ alternating feature rows → social proof → full-width CTA
   color: #FFFFFF;
   border-color: #0047FF;
 }
-
+ 
 .category-panel { display: none; }
 .category-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 ```
-
+ 
 **Key CSS — Horizontal Product Scroll Strip**
 ```css
 .product-strip {
@@ -1031,7 +1038,7 @@ alternating feature rows → social proof → full-width CTA
   scrollbar-width: none;
 }
 .product-strip::-webkit-scrollbar { display: none; }
-
+ 
 .product-card {
   flex: 0 0 280px;
   scroll-snap-align: start;
@@ -1048,14 +1055,14 @@ alternating feature rows → social proof → full-width CTA
 .product-card-name { font-size: 20px; font-weight: 600; color: #262626; }
 .product-card-desc { font-size: 16px; color: #595959; margin-top: 8px; }
 ```
-
+ 
 ---
-
+ 
 ### Blueprint B — Product Suite Page
-
+ 
 **Rhythm:** Dark cosmic hero → clean white "how it works" → dark feature section →
 tabbed product deep-dive → social proof → second dark product section → white CTA
-
+ 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  NAV — transparent on dark hero, sticky                         │
@@ -1092,7 +1099,7 @@ tabbed product deep-dive → social proof → second dark product section → wh
 │  FOOTER — grey-50                                               │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
+ 
 **Key CSS — Transparent Sticky Nav**
 ```css
 .nav-suite {
@@ -1113,14 +1120,14 @@ tabbed product deep-dive → social proof → second dark product section → wh
 }
 /* JS: add .scrolled when window.scrollY > 60 */
 ```
-
+ 
 ---
-
+ 
 ### Blueprint C — Single Product Page
-
+ 
 **Rhythm:** Product identity hero → horizontal highlight carousel → sticky product nav →
 individual feature sections (one feature per section, full-screen) → spec grid → buy CTA
-
+ 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  STICKY NAV — product name left, anchor links center, buy right │
@@ -1156,7 +1163,7 @@ individual feature sections (one feature per section, full-screen) → spec grid
 │  FOOTER                                                         │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
+ 
 **Key CSS — Product Identity Hero**
 ```css
 .hero-product-identity {
@@ -1201,7 +1208,7 @@ individual feature sections (one feature per section, full-screen) → spec grid
   display: block;
 }
 ```
-
+ 
 **Key CSS — Highlight Scroll Carousel**
 ```css
 .highlights-section { padding-block: 80px 0; }
@@ -1259,7 +1266,7 @@ individual feature sections (one feature per section, full-screen) → spec grid
   border-radius: 8px;               /* ODS radius/md */
 }
 ```
-
+ 
 **Key CSS — Individual Feature Sections (full viewport, alternating bg)**
 ```css
 .feature-section-full {
@@ -1279,7 +1286,7 @@ individual feature sections (one feature per section, full-screen) → spec grid
 }
 .feature-section-full.on-black h2 { color: #FFFFFF; }
 .feature-section-full.on-black p  { color: rgba(255,255,255,0.65); }
-
+ 
 .feature-section-full h2 {
   font-size: 72px;                  /* ODS H3 */
   line-height: 80px;
@@ -1297,7 +1304,7 @@ individual feature sections (one feature per section, full-screen) → spec grid
   overflow: hidden;
 }
 ```
-
+ 
 **Key CSS — Spec Highlights Grid**
 ```css
 .spec-highlights {
@@ -1335,13 +1342,13 @@ individual feature sections (one feature per section, full-screen) → spec grid
   margin-top: 8px;
 }
 ```
-
+ 
 ---
-
+ 
 ### Blueprint D — Sticky Product Sub-Nav
-
+ 
 Used in all three pages. Product page anchor nav that sticks below the main nav.
-
+ 
 ```css
 .product-subnav {
   position: sticky;
@@ -1385,32 +1392,32 @@ Used in all three pages. Product page anchor nav that sticks below the main nav.
 .product-subnav.on-dark .product-subnav-link { color: rgba(255,255,255,0.6); }
 .product-subnav.on-dark .product-subnav-link:hover { color: #FFFFFF; border-bottom-color: #FFFFFF; }
 ```
-
+ 
 ---
-
+ 
 ### Choosing the Right Blueprint
-
+ 
 | Your page type | Use Blueprint |
 |---|---|
 | Company homepage / product overview | A — Product Homepage |
 | Multi-product suite / platform page | B — Product Suite |
 | Single product feature page | C — Product Page |
 | Any page with scroll navigation | D — Sticky Sub-Nav |
-
+ 
 **Blueprints can mix sections** — e.g. Blueprint C can use the dark cosmic hero from
 Blueprint B, or the category selector from Blueprint A as a feature switcher.
-
+ 
 ---
-
+ 
 ## Part 11 — Extended Warm Palette (Beyond White/Grey/Blue)
-
+ 
 ODS contains warm tokens that most pages never use. These are permitted for
 **section backgrounds and surface tints only** — never for text, borders on
 interactive elements, or brand touchpoints. They create the "warm, human,
 editorial" register that pure grey/white pages lack.
-
+ 
 ### Approved Warm Surface Tokens (from ODS Figma)
-
+ 
 | Token | Hex | Name | Use |
 |-------|-----|------|-----|
 | `Orange/50` | `#FFF5E5` | Warm Sand | Warm section bg, hero tint |
@@ -1419,18 +1426,18 @@ editorial" register that pure grey/white pages lack.
 | `DeepOrange/50` | `#FFEEE5` | Warm Blush | Editorial accent sections |
 | `Yellow/100` | `#FFF9DB` | Rich Cream | Testimonial / quote bg |
 | `Orange/200` | `#FFD99E` | Amber Tint | Decorative / illustration bg only |
-
+ 
 > **Rule:** Warm surfaces are for backgrounds only. All text on them uses
 > `Grey/900 #262626` or `Grey/500 #595959`. Never put `#0047FF` primary
 > on a warm bg — use `Grey/900` or `Blue/950` instead for CTAs.
-
+ 
 ---
-
+ 
 ### Warm Palette Section Rhythm
-
+ 
 Mix warm, cool, and neutral sections to create temperature contrast — the
 same way dark/light contrast creates visual drama:
-
+ 
 ```
 Hero           → White or Blue/950 (cool anchor)
 "How it works" → Orange/50 #FFF5E5 (warm sand — human, approachable)
@@ -1440,34 +1447,34 @@ Social proof   → White or Grey/50
 CTA band       → Blue/500 #0047FF (cool, high-energy conversion)
 Footer         → Grey/900 #262626 (dark neutral close)
 ```
-
+ 
 **Never** place two warm sections back to back — always separate with white or grey/50.
-
+ 
 ---
-
+ 
 ### CSS: Warm Section Backgrounds
-
+ 
 ```css
 /* Section: Warm Sand */
 .section-warm-sand {
   background: #FFF5E5;               /* ODS Orange/50 */
 }
-
+ 
 /* Section: Warm Cream */
 .section-warm-cream {
   background: #FFFCEB;               /* ODS Yellow/50 */
 }
-
+ 
 /* Section: Deep Sand — stronger warmth */
 .section-warm-deep {
   background: #FFEBCB;               /* ODS Orange/100 */
 }
-
+ 
 /* Warm blush — editorial / testimonial use */
 .section-warm-blush {
   background: #FFEEE5;               /* ODS DeepOrange/50 */
 }
-
+ 
 /* Warm card on warm bg — slightly deeper tint */
 .card-on-warm {
   background: rgba(255, 245, 229, 0.6); /* Orange/50 at 60% on white */
@@ -1475,13 +1482,13 @@ Footer         → Grey/900 #262626 (dark neutral close)
   border-radius: 8px;                   /* ODS radius/md */
 }
 ```
-
+ 
 ---
-
+ 
 ### Warm Gradient Backgrounds (section hero tints)
-
+ 
 These use only ODS warm tokens — never custom hex values:
-
+ 
 ```css
 /* Warm radial — like a soft morning light, for product hero sections */
 .bg-warm-radial {
@@ -1490,7 +1497,7 @@ These use only ODS warm tokens — never custom hex values:
     radial-gradient(ellipse 40% 40% at 10% 80%, #FFFCEB 0%, transparent 65%);
   /* Orange/50 + Yellow/50 */
 }
-
+ 
 /* Warm + cool merge — brand energy with human warmth */
 .bg-warm-cool-merge {
   background:
@@ -1498,28 +1505,28 @@ These use only ODS warm tokens — never custom hex values:
     radial-gradient(ellipse 60% 50% at 20% 70%, #FFF5E5 0%, transparent 60%),  /* Orange/50 */
     #FFFFFF;
 }
-
+ 
 /* Warm amber — rich editorial, use sparingly */
 .bg-warm-amber {
   background: linear-gradient(160deg, #FFEBCB 0%, #FFF5E5 50%, #FFFFFF 100%);
   /* Orange/100 → Orange/50 → white */
 }
 ```
-
+ 
 ---
-
+ 
 ## Part 12 — Graphic Elements: Illustrations, Patterns, SVG Shapes
-
+ 
 These are **CSS-native or inline SVG** graphic elements — no image dependencies.
 They add visual richness without photography and without generic AI stock art.
-
+ 
 ---
-
+ 
 ### 12a — Abstract Organic Blob (Painterly Background Shape)
-
+ 
 Soft, irregular blob shapes that feel hand-drawn. Used as section background
 decoration, positioned behind product UI or text.
-
+ 
 ```css
 /* Blob — pure CSS using border-radius morph technique */
 .blob {
@@ -1529,35 +1536,35 @@ decoration, positioned behind product UI or text.
   pointer-events: none;
   animation: blob-morph 12s ease-in-out infinite;
 }
-
+ 
 /* Warm blob — for use on white or warm sections */
 .blob-warm {
   background: #FFD99E;               /* ODS Orange/200 */
   width: 600px;
   height: 480px;
 }
-
+ 
 /* Blue blob — for use on white or dark sections */
 .blob-blue {
   background: #9AB6FF;               /* ODS Blue/200 */
   width: 500px;
   height: 420px;
 }
-
+ 
 /* Cool accent blob */
 .blob-lightblue {
   background: #6BCEFF;               /* ODS Lightblue/300 */
   width: 400px;
   height: 360px;
 }
-
+ 
 @keyframes blob-morph {
   0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
   25%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
   50%      { border-radius: 50% 60% 30% 40% / 40% 50% 70% 60%; }
   75%      { border-radius: 40% 30% 60% 70% / 60% 40% 50% 30%; }
 }
-
+ 
 /* Usage: position behind content */
 .section-with-blob {
   position: relative;
@@ -1572,14 +1579,14 @@ decoration, positioned behind product UI or text.
   left: -100px;
 }
 ```
-
+ 
 ---
-
+ 
 ### 12b — SVG Painterly Stroke (Underline / Highlight)
-
+ 
 Hand-drawn SVG underline or circle to highlight a key word in a headline.
 Editorial feel — feels human, not mechanical.
-
+ 
 ```html
 <!-- Squiggly underline under a key word -->
 <h2>
@@ -1597,7 +1604,7 @@ Editorial feel — feels human, not mechanical.
   with customers.
 </h2>
 ```
-
+ 
 ```css
 .highlight-word {
   position: relative;
@@ -1611,7 +1618,7 @@ Editorial feel — feels human, not mechanical.
   height: 12px;
   overflow: visible;
 }
-
+ 
 /* Animated draw-in on scroll reveal */
 .word-underline path {
   stroke-dasharray: 150;
@@ -1621,18 +1628,18 @@ Editorial feel — feels human, not mechanical.
 .revealed .word-underline path {
   stroke-dashoffset: 0;
 }
-
+ 
 /* Warm variant — on warm bg sections */
 .word-underline-warm path { stroke: #FF9E08; } /* ODS Orange/500 */
 ```
-
+ 
 ---
-
+ 
 ### 12c — SVG Background Patterns
-
+ 
 Pure SVG patterns as section backgrounds. Subtle, geometric, editorial.
 Always ≤5% opacity so they don't compete with content.
-
+ 
 ```css
 /* ① Dot grid — classic, works on any bg */
 .pattern-dots {
@@ -1645,7 +1652,7 @@ Always ≤5% opacity so they don't compete with content.
   background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
 }
-
+ 
 /* ② Line grid — technical, data-forward pages */
 .pattern-grid {
   background-image:
@@ -1654,7 +1661,7 @@ Always ≤5% opacity so they don't compete with content.
   /* ODS Grey/200 */
   background-size: 40px 40px;
 }
-
+ 
 /* ③ Diagonal stripe — energetic, CTA sections */
 .pattern-diagonal {
   background-image: repeating-linear-gradient(
@@ -1665,7 +1672,7 @@ Always ≤5% opacity so they don't compete with content.
     rgba(0,71,255,0.04) 20px
   );
 }
-
+ 
 /* ④ Warm dot grid — for Orange/50 sections */
 .pattern-dots-warm {
   background-image: radial-gradient(circle, #FFD99E 1.5px, transparent 1.5px);
@@ -1673,7 +1680,7 @@ Always ≤5% opacity so they don't compete with content.
   background-size: 28px 28px;
   opacity: 0.5;
 }
-
+ 
 /* ⑤ Concentric rings — hero depth, centered on focal point */
 .pattern-rings {
   background-image:
@@ -1684,13 +1691,13 @@ Always ≤5% opacity so they don't compete with content.
   background-position: center;
 }
 ```
-
+ 
 ---
-
+ 
 ### 12d — Illustrated Section Dividers (SVG wave / torn edge)
-
+ 
 SVG shapes that create organic transitions between sections instead of flat edges.
-
+ 
 ```html
 <!-- Wave divider — placed at bottom of a section to transition into next -->
 <div class="section-divider-wave">
@@ -1702,7 +1709,7 @@ SVG shapes that create organic transitions between sections instead of flat edge
   </svg>
 </div>
 ```
-
+ 
 ```css
 .section-divider-wave {
   position: absolute;
@@ -1718,7 +1725,7 @@ SVG shapes that create organic transitions between sections instead of flat edge
   height: 80px;
 }
 ```
-
+ 
 **Color map for divider fill:**
 | Transitioning into | Fill color |
 |---|---|
@@ -1727,14 +1734,14 @@ SVG shapes that create organic transitions between sections instead of flat edge
 | Warm cream section | `#FFFCEB` (Yellow/50) |
 | Grey surface section | `#F5F5F5` (Grey/50) |
 | Dark section | `#000719` (Blue/950) |
-
+ 
 ---
-
+ 
 ### 12e — Floating Illustration Cards (Abstract + Product UI Mix)
-
+ 
 Editorial cards that mix abstract geometric shapes with product UI. Used in
 feature grids on warm-section backgrounds.
-
+ 
 ```css
 .illustration-card {
   background: #FFFFFF;
@@ -1744,7 +1751,7 @@ feature grids on warm-section backgrounds.
   overflow: hidden;
   box-shadow: 0px 16px 24px -4px rgba(0,0,0,0.08); /* ODS Elevation/small at 8% */
 }
-
+ 
 /* Decorative blob behind the card illustration */
 .illustration-card .card-blob {
   position: absolute;
@@ -1758,7 +1765,7 @@ feature grids on warm-section backgrounds.
 }
 .illustration-card .card-blob-warm { background: #FFD99E; } /* Orange/200 */
 .illustration-card .card-blob-blue { background: #9AB6FF; } /* Blue/200 */
-
+ 
 /* Abstract geometric shape inside card */
 .card-geo {
   width: 80px;
@@ -1772,18 +1779,18 @@ feature grids on warm-section backgrounds.
 .card-geo-warm { background: #FFF5E5; } /* Orange/50 */
 .card-geo-blue { background: #E4EDFF; } /* Blue/50 */
 ```
-
+ 
 ---
-
+ 
 ## Part 13 — Photography Direction
-
+ 
 Photography makes or breaks the "human" quality of a page. These rules define
 which types of stock photography fit the visual register and how to use them.
-
+ 
 ---
-
+ 
 ### 13a — Photography Categories by Section Type
-
+ 
 | Section | Photography type | What to avoid |
 |---|---|---|
 | Hero | Environmental / workspace — real place, real light | Studio white bg, generic handshakes |
@@ -1792,29 +1799,26 @@ which types of stock photography fit the visual register and how to use them.
 | "Team / culture" | Real office spaces, candid moments, group energy | Perfect symmetry, stock agency faces |
 | CTA band | Abstract close-up texture / material — fabric, concrete, light | Generic blue sky, stock business |
 | Dark section | Dramatic cinematic portrait or aerial — high contrast | Bright cheerful stock photos |
-
+ 
 ---
-
+ 
 ### 13b — Photography Framing Rules
-
+ 
 **Warm sections (Orange/50 bg):**
 - Use warm-lit photography — golden hour, indoor ambient, wooden surfaces
 - Subject should face or angle toward the text, not away
 - Leave 40% of the image as low-detail space for text overlay
-
 **Dark sections (Blue/950 bg):**
 - Photography in dark sections must have dark tone — no bright cheerful imagery
 - Use a `mix-blend-mode: luminosity` + dark overlay to desaturate bright photos
 - Apply an ODS blue-950 overlay at 40–60% opacity to unify photography with section bg
-
 **White / neutral sections:**
 - Photography should have neutral or cool light — daylight, overcast
 - Avoid warm-tinted photography on white bg — the colour temperature conflict reads as an accident
-
 ---
-
+ 
 ### 13c — CSS: Photography Treatments
-
+ 
 ```css
 /* Standard editorial treatment — slight desaturate + contrast lift */
 .photo-editorial {
@@ -1822,19 +1826,19 @@ which types of stock photography fit the visual register and how to use them.
   border-radius: 8px;                /* ODS radius/md */
   object-fit: cover;
 }
-
+ 
 /* Dark section treatment — luminosity blend over dark bg */
 .photo-on-dark {
   mix-blend-mode: luminosity;
   opacity: 0.7;
   filter: contrast(1.1);
 }
-
+ 
 /* Warm treatment — slight warmth tint via sepia hint */
 .photo-warm {
   filter: contrast(1.02) saturate(1.05) sepia(0.06);
 }
-
+ 
 /* Overlay for dark sections — applied via ::after on wrapper */
 .photo-dark-overlay {
   position: relative;
@@ -1848,12 +1852,12 @@ which types of stock photography fit the visual register and how to use them.
   background: rgba(0, 7, 25, 0.45);  /* ODS Blue/950 at 45% */
   border-radius: 8px;
 }
-
+ 
 /* Warm overlay — for landing on warm sections */
 .photo-warm-overlay::after {
   background: rgba(255, 235, 203, 0.25); /* ODS Orange/100 at 25% */
 }
-
+ 
 /* Split image — left half sharp, right half bleeds to edge */
 .photo-bleed-right {
   width: calc(100% + 40px);          /* overflows ODS margin */
@@ -1861,27 +1865,27 @@ which types of stock photography fit the visual register and how to use them.
   border-radius: 8px 0 0 8px;        /* ODS radius/md — left side only */
 }
 ```
-
+ 
 ---
-
+ 
 ### 13d — Photography Aspect Ratios by Use
-
+ 
 ```css
 /* Hero photo — landscape, cinematic */
 .photo-hero    { aspect-ratio: 16 / 9; }
-
+ 
 /* Feature row visual — square or slightly taller */
 .photo-feature { aspect-ratio: 4 / 3; }
-
+ 
 /* Portrait testimonial */
 .photo-avatar  { aspect-ratio: 1 / 1; border-radius: 160px; } /* ODS radius/round */
-
+ 
 /* Section banner — very wide, cinematic strip */
 .photo-banner  { aspect-ratio: 21 / 6; }
-
+ 
 /* Card photo — consistent across card grids */
 .photo-card    { aspect-ratio: 3 / 2; }
-
+ 
 /* Full viewport — hero image background */
 .photo-fullvp  {
   width: 100%; height: 100vh;
@@ -1889,14 +1893,14 @@ which types of stock photography fit the visual register and how to use them.
   object-position: center 30%;       /* slightly above center for people shots */
 }
 ```
-
+ 
 ---
-
+ 
 ### 13e — Combining Illustration + Photography
-
+ 
 The most premium pages mix real photography with abstract graphic elements —
 photography for humanity, illustration for brand voice.
-
+ 
 **Pattern: Photo + Blob overlay**
 ```css
 /* Photo card with decorative blob behind it — creates depth */
@@ -1915,7 +1919,7 @@ photography for humanity, illustration for brand voice.
   border-radius: 8px;                /* ODS radius/md */
 }
 ```
-
+ 
 **Pattern: Illustration frame around product UI screenshot**
 ```css
 /* Product UI sits on a warm gradient card, with SVG deco in corner */
@@ -1943,13 +1947,12 @@ photography for humanity, illustration for brand voice.
   box-shadow: 0px 16px 24px -4px rgba(0,0,0,0.15);
 }
 ```
-
+ 
 ---
-
+ 
 ## Skill Relationships
-
+ 
 - **Exact token values** (hex, px, weights) → `ods-design-system` skill
 - **Button / input component CSS** → `ods-design-system` skill
 - **Full page templates with all sections** → `zoho-webpage-design` skill
-
 **This skill = visual craft decisions. All tokens come from ODS. Never override brand.**

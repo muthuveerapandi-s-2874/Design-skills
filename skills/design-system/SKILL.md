@@ -1,6 +1,8 @@
 ---
 name: ods-design-system
 description: Apply Zoho ODS design tokens when building UI, components, or webpages.
+
+---
 triggers:
   - zoho ui
   - ods
@@ -10,8 +12,7 @@ triggers:
   - landing page
   - dashboard ui
   - web page design
----
-
+  
 # ODS Design System Skill
 
 ## Purpose
