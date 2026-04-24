@@ -124,9 +124,15 @@ When the page includes product screenshots or UI fragments:
 Shift's colours come from `design-system/themes/shift.json`. Marketing pages
 use this tight four-surface subset:
 
+> **Important — CTAs are NOT in this palette.**
+> The tokens below describe section backgrounds, banners, surfaces, and
+> accents. **CTA fills come from `design-system/components/cta.json`
+> (ODS blue `#0047FF`) and are covered in §12.** Never use `--primary`
+> or `#3940D0` on a CTA.
+
 | Token | Source | Hex | Role |
 |---|---|---|---|
-| `--primary` | `themes/shift.json → colors.primary.500` | `#3940D0` | Brand primary. Solid banners, primary CTA fills, active states, links. |
+| `--primary` | `themes/shift.json → colors.primary.500` | `#3940D0` | Shift brand — solid banner backgrounds, accents, links, active states. **Not CTAs.** |
 | `--light-gradient` | `themes/shift.json → colors.primary.200 → primary.50` | `#B4BCEE → #EEF0FB` | Light theme gradient — banner alternative to solid primary. |
 | `--canvas` | ODS `colors.json → white.500` | `#FFFFFF` | Page background. Default for every section. |
 | `--secondary` | Inline — not yet in `themes/shift.json` | `#161B63` | **Dark theme colour.** Dark-theme sections and headline text on light backgrounds. If this becomes formalised, it would be `primary.850` (between 800 and 900). |
@@ -368,9 +374,19 @@ The whole page commits to one flavor. If the hero is solid primary, the CTA bann
 
 ### Primary CTA on banners
 
-Designer picks per page — the banner's job is to look right, and the CTA follows. The only rule is that the CTA must have **4.5:1 contrast** against the banner surface it sits on (WCAG AA). See §12 CTA for the full button spec.
+The CTA stays **ODS blue `#0047FF`** regardless of which banner it sits on.
+Same treatment on solid primary, light gradient, or dark sections — the
+component does not flip, swap, or recolour. See §12 for the full spec.
 
-On solid primary the CTA is often a white button with primary text. On the light gradient the CTA is often solid `#3940D0` with white text. But neither is forced — if a different treatment reads better for a specific page, use it, as long as the contrast ratio passes.
+Per WCAG AA, the CTA must have at least **4.5:1 contrast** against its
+surface. Since the CTA is always ODS blue on white text:
+- On white sections: passes (blue on white).
+- On light gradient banners (`#B4BCEE → #EEF0FB`): passes (blue on light).
+- On solid Shift-indigo `#3940D0` banners: **fails** — ODS blue on Shift
+  blue is too close in hue. In that one case, use the `primaryLine`
+  variant with a white border and white text, OR choose a different banner
+  treatment. Never flip the primary CTA to white fill.
+- On dark `#161B63` sections: passes (blue on dark, high contrast).
 
 ### Hard rules
 
@@ -794,16 +810,73 @@ If a component isn't listed, it's either an edge case (ask the designer) or it's
 size, border, typography, states — every property comes from the component
 spec. No overrides, no variants, no surface-based flipping.
 
-- Do not change the CTA's background colour based on which section it's in.
-- Do not swap to white fill on primary banners.
-- Do not use Shift's `#3940D0` on CTA fills — the CTA primary fill is
-  whatever `cta.json` says.
-- `--primary` (Shift indigo, from §3) is for section backgrounds and
-  accents, **not** for CTAs.
+### Resolved values — mirror of `components/cta.json`
 
-If a design calls for a button treatment `cta.json` doesn't support, the
-answer is to either pick a variant that does, or raise it with the ODS
-team — never fork the component here.
+The skill carries these inline so Claude can produce correct output even
+when the `design-system/` submodule is not initialised in a user's project.
+**Source of truth is `cta.json` itself.** If the values here ever drift,
+update the skill.
+
+**Primary variant** (use for main CTAs on every surface):
+- Background: `#0047FF` (ODS `colors.blue.500`)
+- Text: `#FFFFFF`
+- Border: none
+- Radius: `4px`
+- Hover background: `#0038CC` (ODS `colors.blue.600`)
+- Active background: `#002DA6` (ODS `colors.blue.700`)
+- Focus: 2px outline in `#0047FF` with 2px offset
+- Disabled: `#B3C4FF` background (ODS `colors.blue.200`), white text
+
+**PrimaryLine variant** (use for secondary actions alongside primary):
+- Background: transparent
+- Text: `#0047FF`
+- Border: `1px solid #0047FF`
+- Radius: `4px`
+- Hover: `#EEF3FF` background (ODS `colors.blue.50`)
+
+**Size — `sm` (the only size used on marketing pages):**
+- Height: `56px`
+- Padding: `16px 24px`
+- Font family: Puvi
+- Font weight: `500`
+- Font size: `16px`
+- Line height: `24px`
+- Letter spacing: `-0.16px`
+- Gap (text ↔ icon): `12px`
+
+### Hard rules
+
+1. **Use `primary` or `primaryLine` variant only** on marketing pages.
+   `secondary`, `secondaryLine`, `tertiary` are for product UI.
+2. **Size `sm` only.** No large hero variant, no small inline variant.
+3. **CTA primary fill is ODS blue `#0047FF`, never Shift indigo
+   `#3940D0`.** Shift's `#3940D0` is for section backgrounds and accents
+   only — it never appears on a CTA fill, border, or text.
+4. **Do not change CTA colour based on which section it surfaces on.** A
+   primary CTA on a white section, a primary-blue banner, a dark `#161B63`
+   section, or a light gradient banner — all render the same way: ODS blue
+   background, white text.
+5. **Do not swap to white fill on primary banners.** If a primary CTA on a
+   Shift-indigo banner has contrast issues, use the `primaryLine` variant
+   instead, or rework the composition.
+6. **Radius is `4px`** from the component spec — never override.
+7. **No icon-only buttons** as marketing CTAs. Trailing arrow in the label
+   is fine (an SVG next to the text, not a standalone icon button).
+
+### If the design needs something `cta.json` doesn't support
+
+Two options — never a third:
+
+1. Pick a `cta.json` variant that does fit.
+2. Raise it with the ODS team to add the variant to the component.
+
+**Never fork the CTA locally.** A local override breaks standardization
+across Zoho products.
+
+### The "if you remember one thing"
+
+**ODS blue `#0047FF`, primary or primaryLine, size `sm`, radius 4px,
+56px tall. Same on every surface. Shift indigo is not a CTA colour.**
 
 ---
 ## 13. Structure Library
@@ -1068,7 +1141,7 @@ This matches the headline color used throughout the site (§3 Colour), so icons 
 
 1. **On dark `#161B63` sections** — the icon can't be the same color as the background. Flip to `#FFFFFF` (white) on these sections. No other color is acceptable on dark.
 2. **Status/state icons inside the product UI only** — inside a product screenshot, icons reflecting a state (green check for success, orange for warning, red for error) stay their status color, because they're part of the product, not the marketing page.
-3. **CTA trailing arrow** — matches the CTA's text color per §12 (white on primary button, `#3940D0` on secondary/ghost). This is a CTA rule, not an icon rule; it's listed here so the two systems don't contradict.
+3. **CTA trailing arrow** — matches the CTA's text colour per §12 (white on `primary`, ODS blue `#0047FF` on `primaryLine`). This is a CTA rule, not an icon rule; it's listed here so the two systems don't contradict.
 
 **Not allowed as icon colors** — greys, blacks, `#000`, `--fg-tertiary`, accent colors (cyan, sky, royal blue, deep indigo), or any hex picked for a specific icon's "feel." The rule is absolute: `#161B63` on light, `#FFFFFF` on dark, status colors only inside the product, done.
 
@@ -1141,7 +1214,7 @@ On light surfaces, the tile is the soft fill and the icon carries the saturated 
 
 ### What accents never do
 
-1. **Never replace Primary `#3940D0` on a CTA.** Primary CTAs stay `#3940D0`, full stop. Accents are not CTA fills.
+1. **Accents are not CTA fills.** CTAs come from `components/cta.json` (ODS blue `#0047FF`) per §12. Accents never replace the CTA colour, and `#3940D0` is never on a CTA either.
 2. **Never replace status colors.** Success/warning/error/info live in their own token set. An accent-colored "success" pill is wrong.
 3. **Never mixed with status colors in the same card.** A card's icon tile is either an accent or a status — never both side-by-side.
 4. **Never dimmed with alpha.** Accents appear at full saturation of their 500 value. No `rgba(0, 180, 210, 0.6)`. If a softer feel is wanted, use the Light 50 variant — don't tint the base.
@@ -1426,7 +1499,7 @@ All use `ease` or `ease-in-out` — no overshoot, no bounce.
 
 **Every page must pass WCAG 2.1 Level AA before shipping. No exceptions.**
 
-Accessibility is non-negotiable and baked into the skill's tokens — the primary CTA (`#3940D0` on white), the three foreground text tokens (`--fg-primary`, `--fg-secondary`, `--fg-tertiary`), white text on solid primary at 75% opacity, and white text on dark `#161B63` at 75% opacity all pass 4.5:1 by default.
+Accessibility is non-negotiable and baked into the skill's tokens — the primary CTA (ODS blue `#0047FF` on white, per §12), the three foreground text tokens (`--fg-primary`, `--fg-secondary`, `--fg-tertiary`), white text on solid primary at 75% opacity, and white text on dark `#161B63` at 75% opacity all pass 4.5:1 by default.
 
 **One exception to watch:** `--fg-muted #969BC0` fails 4.5:1 on white. Use it only for decorative metadata or disabled states — never for readable text. Readable body copy uses `--fg-tertiary #55597A`.
 
