@@ -13,7 +13,7 @@
     {
       "name": "design-skills",
       "version": "1.5.0",
-      "description": "UI thinking, design language, theme generation, product visual languages, and marketing page composition for Zoho ODS",
+      "description": "UI thinking, design language, theme generation, product visual languages, and section-by-section page building for Zoho ODS",
       "source": "./",
       "strict": false,
       "skills": [
@@ -22,7 +22,7 @@
         "./skills/zoho-theme-factory",
         "./skills/ods-design-system",
         "./skills/shift-visual-language",
-        "./skills/marketing-page-composer"
+        "./skills/ods-page-builder"
       ]
     }
   ]
