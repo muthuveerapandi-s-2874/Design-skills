@@ -69,15 +69,14 @@ The first impression. Choose archetypes that differ on focal element and composi
 
 ### Daring options (Variant A candidates)
 
-- **Solid brand banner** *(for Shift)* — full-bleed `#3940D0` indigo background, white headline + ODS blue CTA. The most distinctive Shift-specific hero. Banner takes the entire hero section.
+- **Solid brand banner** — full-bleed `var(--brand)` background (the product brand color — a deep indigo, a warm red, a forest green, depending on which product), white headline + ODS blue CTA. The most product-distinctive hero option. Banner takes the entire hero section.
 - **Split asymmetric (60/40 with offset)** — copy ~55% on left, product UI/screenshot ~45% on right, vertical alignment offset (text top-aligned, visual pulled slightly below center for tension). The asymmetry creates focus.
-- **Inverted dark hero** — full-bleed dark surface (`var(--surface-dark)` / `#161B63` for Shift), oversized white headline (96px+), brand accent for highlights. Confident and editorial.
-- **Hero with sample artifact** — copy on one side, the actual product output on the other (a sample week-view schedule with real names, a sample shift-swap message thread). The hero IS the product.
+- **Inverted dark hero** — full-bleed dark surface (`var(--surface-dark)` from the product theme), oversized white headline (96px+), brand accent for highlights. Confident and editorial.
+- **Hero with sample artifact** — copy on one side, the actual product output on the other (a sample dashboard view with real data, a sample report, a sample message thread, a sample timeline — whatever artifact the product produces). The hero IS the product.
 
 ### Editorial / text-led options (Variant B candidates)
 
 - **Editorial stacked** — eyebrow label, then very large display headline (80px+) taking 2-3 lines, supporting paragraph, CTA — all left-aligned in a narrow column, no visual aid. The headline is the hero.
-- **Light gradient banner** *(for Shift)* — full-bleed `linear-gradient(180deg, #B4BCEE 0%, #EEF0FB 100%)`, dark text + ODS blue CTA. Inner-page Shift hero pattern.
 - **Split with form** — copy on left, signup/CTA form on right (good for tools, newsletters, waitlists). The form makes interaction the focal point.
 
 ### Safe options (Variant C — the "AI default")
@@ -85,14 +84,16 @@ The first impression. Choose archetypes that differ on focal element and composi
 - **Centered + product below** — headline + subhead + CTA centered, generous whitespace, large product screenshot below. The pattern users have seen on every other SaaS site. **Use sparingly** — only when the user explicitly wants conventional, or when the brief requires maximum approachability.
 - **Side-by-side comparison** — "Before/After" or "Without us / With us" two-column hero. Conservative but informative.
 
-### For Shift pages
+### When the product has a visual-language skill
 
-Strongly prefer the **Solid brand banner** (home / main pages) or **Light gradient banner** (inner pages) for at least one of the three variants — they match the established Shift visual language and are signature Shift moments. The Inverted dark hero is also Shift-native (uses `#161B63` surface). Centered + product below is rarely the right answer on a Shift page; if it appears, it should be Variant C.
+If a product visual-language skill is loaded (e.g., for a product where the brand has established hero conventions like specific banner patterns), prefer the **Solid brand banner** or **Inverted dark hero** for at least one of the three variants — these are the most product-distinctive options. Centered + product below is rarely the right answer for a brand-distinctive product page; it should be Variant C if it appears at all.
+
+For products without a visual-language skill, all archetypes above are available; pick three that best fit the brief.
 
 ## Logo cloud (social proof bar)
 
 - **Centered band** — small "Trusted by" label centered, logos in a single horizontal row, evenly spaced
-- **Marquee** — logos scrolling horizontally, infinite loop *(skip on Shift pages — no entrance animations / motion rule)*
+- **Marquee** — logos scrolling horizontally, infinite loop *(skip when the active product visual-language disallows motion / entrance animations)*
 - **Grid with quote** — 6–9 logos in a grid plus a customer quote pulled from one of them
 - **Logos with metrics** — 3–4 logos paired with a metric per logo
 
@@ -109,7 +110,7 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 ### Editorial / text-led options (Variant B candidates)
 
 - **List with media** — left-side vertical list of features (titles + 1-line descriptions), right-side a single large media that swaps based on which list item is hovered or active. Editorial because the typography of the list IS the design.
-- **Tabbed deep-dive** — section title + horizontal tabs, picking a tab swaps a large content panel (visual + headline + bullets). Each tab gets editorial treatment in its panel. *(For Shift pages, ensure tab-switch is instant; no animated transitions per `shift-visual-language`.)*
+- **Tabbed deep-dive** — section title + horizontal tabs, picking a tab swaps a large content panel (visual + headline + bullets). Each tab gets editorial treatment in its panel. *(When the active product visual-language disallows motion, ensure tab-switch is instant — no animated transitions.)*
 
 ### Safe options (Variant C — the "AI default")
 
@@ -119,7 +120,7 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 
 - *Numbered steps as feature cards* — overlaps too much with 3-up grid. Use the "How it works" section for actual sequential steps; don't disguise features as steps.
 - *Icon wall (4×N small features)* — overlaps with 3-up grid; "many small features" is rarely a brief that needs visual distinction. If the brief is "everything you get", use a comparison table instead.
-- *Sticky scroll* — explicitly forbidden for Shift pages (scroll-jacking violates `shift-visual-language` rules). Don't include even as Variant A on Shift pages.
+- *Sticky scroll* — forbidden when the active product visual-language disallows scroll-jacking. Even as Variant A, don't include for products with no-motion rules. Available for products that permit scroll-driven interactions.
 
 ## How it works / Process
 
@@ -149,7 +150,7 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 
 ### Cut from the catalog (forbidden or weak)
 
-- *Marquee of quotes* — explicitly forbidden on Shift pages (motion / scroll-triggered animation violates `shift-visual-language`). Don't include even as Variant A on Shift pages.
+- *Marquee of quotes* — forbidden when the active product visual-language disallows motion. Don't include even as Variant A for products with no-motion rules. Available when product visual-language permits motion.
 - *Carousel of stories* — adds JS complexity; static page builders shouldn't reach for this unless the brief specifically requires it.
 
 ## Stats / Metrics
@@ -167,7 +168,7 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 
 - **Comparison-led** — skip the plan cards entirely; lead with the full feature × tier matrix. Each plan is a column header with price + CTA at the top. Best when buyers want to compare features more than they want to be sold. Editorial and confident.
 - **Single hero plan + add-on toggles** — for products with one primary plan, show that plan's price prominently and list optional add-ons below. Cleaner than fake-tiering when there's really just one product.
-- **Calculator-driven** — sliders or inputs that let the user model their cost based on volume. Real-time price calculation. Strong for usage-priced products. *(For Shift pages, the calculator must be no-animation — instant updates only.)*
+- **Calculator-driven** — sliders or inputs that let the user model their cost based on volume. Real-time price calculation. Strong for usage-priced products. *(When the active product visual-language disallows motion, the calculator must use instant updates — no animated transitions on number changes.)*
 
 ### Editorial / text-led options (Variant B candidates)
 
@@ -199,7 +200,7 @@ CTA on every pricing card: `var(--cta)` (ODS blue), regardless of tier or aesthe
 
 ### Daring options (Variant A candidates)
 
-- **Full-bleed brand banner** *(for Shift)* — solid `#3940D0` background or light gradient banner, oversized headline (80px+) + ODS blue CTA. Bookends the hero — opens and closes the page on the same surface. The most distinctive Shift-native CTA. Confident and singular.
+- **Full-bleed brand banner** — solid `var(--brand)` background, oversized headline (80px+) + ODS blue CTA. Bookends the hero — opens and closes the page on the same surface (when the hero also uses a brand banner). The most product-distinctive CTA option. Confident and singular.
 - **Asymmetric with visual** — 60/40 split — headline + CTA on one side, a final visual or testimonial on the other. Less in-your-face than a full banner but more interesting than centered.
 
 ### Editorial / text-led options (Variant B candidates)
@@ -215,9 +216,9 @@ CTA on every pricing card: `var(--cta)` (ODS blue), regardless of tier or aesthe
 
 - *Centered with two CTAs* — most pages have one primary action. Two equally-weighted buttons hedge the conversion. Use only if the page genuinely has two equally-important actions (e.g., "Start trial" AND "Book demo" for a product with both self-serve and sales-led motions).
 
-### For Shift pages
+### When the product has a visual-language skill
 
-The final CTA section is typically the **Full-bleed brand banner** — bookending the hero creates symmetry that's part of Shift's visual language.
+If a product visual-language skill is loaded and the brand has hero-banner conventions, the final CTA section is typically the **Full-bleed brand banner** — bookending the hero creates symmetry that's part of the product's visual rhythm.
 
 ## Footer
 

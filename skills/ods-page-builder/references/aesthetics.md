@@ -46,10 +46,10 @@ The tokens are for you, not for them.
 - Cards: either bordered OR with the faintest shadow, never both
 - No drop shadows beyond `0 1px 3px rgba(0,0,0,0.04)`
 
-### Motion (overridden by `shift-visual-language` for Shift pages)
+### Motion (overridden by product visual-language skills, when loaded)
 - 150ms ease-out on hovers
 - No bouncing, no overshoot
-- For Shift: no entrance animations at all
+- When the active product visual-language disallows motion: no entrance animations at all
 
 ### Color application
 - Background: `var(--canvas)` (white)
@@ -92,7 +92,7 @@ Three-column-everything (vary the composition).
 - Section dividers: thin horizontal rules between major sections
 
 ### Motion
-- Slow reveals (300-400ms ease-out) — but for Shift pages, NO reveals at all
+- Slow reveals (300-400ms ease-out) — but if the active product visual-language disallows motion, NO reveals at all
 - No transforms
 
 ### Color application
@@ -119,7 +119,7 @@ Rounded corners on cards. Drop shadows. Busy gradients. Three-column-everything.
 ### Typography
 - **Type pair:** Zoho Puvi for display + monospace (`'JetBrains Mono', monospace`) for code/labels/captions
 - **Type scale:** 12 / 14 / 16 / 20 / 28 / 40 / 56
-- **Headlines:** medium weight (500), tight tracking (-0.02em); for Shift, no gradient text on headlines
+- **Headlines:** medium weight (500), tight tracking (-0.02em); if the active product visual-language disallows decoration like gradient text on headlines
 - **Body:** 15–16px, 1.5 line-height (denser than other aesthetics)
 - **Code/labels:** monospace, 14px
 
@@ -130,15 +130,15 @@ Rounded corners on cards. Drop shadows. Busy gradients. Three-column-everything.
 
 ### Borders & shadows
 - 1px in low-opacity white for borders on dark — use `rgba(255,255,255,0.08)` or your design system's `--border-on-dark` if defined
-- The signature dark-UI hairline — soft glow possible on hover (but for Shift, no glows)
+- The signature dark-UI hairline — soft glow possible on hover (but if the active product visual-language disallows glows, omit them)
 
-### Motion (overridden by `shift-visual-language` for Shift pages)
+### Motion (overridden by product visual-language skills, when loaded)
 - Fast snappy transitions, 100-150ms
-- For Shift: no animations at all
-- Possible monospace cursor blink in code mockups (allowed for non-Shift)
+- When the active product visual-language disallows motion: no animations at all
+- Possible monospace cursor blink in code mockups (allowed when product visual-language permits motion)
 
 ### Color application
-- Background: dark surface — for Shift, use `#161B63` (Shift dark surface). For non-Shift, dark navy from ODS palette.
+- Background: dark surface — use `var(--surface-dark)` from the product's theme. The product theme defines this value (deep indigo, deep navy, dark plum, etc., depending on the product). If no product theme is loaded, fall back to a dark navy from the ODS palette.
 - Text on dark: near-white or `var(--fg-on-dark)`
 - Brand accent: `var(--brand)` — slightly more saturated treatment OK on dark
 - CTA: `var(--cta)` (ODS blue) — note: ODS blue on dark backgrounds may need to be checked for contrast; use `primaryLine` variant if needed (border + text only)
@@ -175,9 +175,9 @@ White backgrounds. Warm colors. Decorative imagery. Soft edges.
 - Slight elevation on cards is fine
 
 ### Motion
-- Spring-feel transitions for non-Shift
-- For Shift: no motion (overridden)
-- Hover micro-interactions OK on non-Shift (slight scale or shadow lift)
+- Spring-feel transitions when product visual-language permits motion
+- When the active product visual-language disallows motion: no motion (overridden)
+- Hover micro-interactions OK when product visual-language permits motion (slight scale or shadow lift)
 
 ### Color application
 - Background: `var(--canvas)` — possibly with a slightly warm or pastel-tinted alt section

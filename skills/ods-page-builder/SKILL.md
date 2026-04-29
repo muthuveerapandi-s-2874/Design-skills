@@ -6,7 +6,7 @@ description: >
   pick, move on. Always uses real ODS tokens from the design system
   (colors, typography, CTA spec). Use this skill whenever the user wants
   to iterate on a Zoho marketing page interactively, including phrases
-  like "build me a Shift landing page", "let's design a Zoho pricing
+  like "build me a Zoho landing page", "let's design a Zoho pricing
   page", "iterate on this section by section", "show me variants for
   the hero", or "build it like Webflow but with our brand". For
   one-shot generation (no variant picking) use `marketing-page-composer`
@@ -23,7 +23,7 @@ Webflow/Framer variant-picking flow with real ODS design tokens.
 
 Designers iterating on Zoho pages need two things at once:
 1. The variant-picking flow that forces real design decisions per section
-2. Actual ODS tokens (real CTA color, real Shift indigo, real Zoho Puvi)
+2. Actual ODS tokens (real CTA color, real product brand color, real Zoho Puvi)
    so the page feels native to the brand from the first variant onward
 
 Existing skills do one or the other. `marketing-page-composer` knows ODS
@@ -35,12 +35,17 @@ but uses generic aesthetics like `#4F46E5` indigo. This skill does both.
 Covers four page types: **landing pages, feature pages, pricing pages,
 about pages.**
 
-For a Shift-specific page, this skill loads and respects
-`shift-visual-language` rules — its TOP RULES, banner rules, dark-theme
+For a product-specific page, if a product visual-language skill exists
+for that product (e.g., a hypothetical `crm-visual-language`), this skill
+loads and respects its rules — its TOP RULES, banner rules, dark-theme
 rhythm, and animation discipline override any aesthetic defaults that
 conflict.
 
-For non-Shift Zoho pages (generic Zoho marketing, Zoho One announcements,
+For products without a dedicated visual-language skill (most products
+today), the picked aesthetic's defaults apply directly with the product's
+theme tokens overlaid.
+
+For generic Zoho pages (Zoho One announcements,
 docs landing pages), the skill applies ODS Light defaults from the
 design system.
 
@@ -55,7 +60,7 @@ design system.
 
 1. **Content intake** — accept whatever the user gives. Ask only what's missing.
 2. **Aesthetic pick** — 4 ODS-compatible aesthetics (Modern Minimal, Editorial, Tech/Cyberpunk, Playful). User picks one.
-3. **Product detection + theme load** — detect if this is a Shift page (or future CRM/Books). Load product theme tokens. If Shift, also load `shift-visual-language` rules.
+3. **Product detection + theme load** — detect if a Zoho product is named in the brief. Load that product's theme tokens. If a visual-language skill exists for that product, also load its rules.
 4. **Section plan** — propose section order based on page type and content. Get user confirmation.
 5. **Variant pick loop** — for each section, render 3 distinct variants, user picks one, move to next.
 6. **Assembly** — produce one `index.html` and one `styles.css` in `/mnt/user-data/outputs/`, present to user.
@@ -71,7 +76,7 @@ there, identify what's missing.
 **Ask only the gaps that matter.** One or two targeted questions is the
 ceiling. Don't run a 10-question intake form.
 
-If the user mentions a Zoho product name (Shift, CRM, Books, Desk, etc.),
+If the user mentions a Zoho product name (any of the Zoho product family),
 note it — that determines which theme file to fetch in Step 3.
 
 If the user names a page type ("landing page", "pricing page", "about page",
@@ -98,10 +103,10 @@ come from ODS** (Step 3), not from the aesthetic's generic colors.
 
 Read `references/design-system-source.md` for the fetch contract.
 
-If the user named a Zoho product (e.g., "Shift signup page"):
+If the user named a Zoho product:
 
-1. Fetch `themes/<product>.json` from the marketplace repo for product brand colors
-2. If product is Shift, also load Shift's TOP RULES from `shift-visual-language`. Hold those rules through every variant render and the final assembly.
+1. Fetch `themes/<product>.json` from the marketplace repo for product brand colors. If the file 404s (the product hasn't been onboarded yet), fall back to ODS-wide defaults — the page is still buildable, just without product brand overlay.
+2. If a visual-language skill exists for that product, also load its rules (TOP RULES, brand-vs-CTA discipline, banner spec, dark-theme rhythm, animation discipline). Hold those rules through every variant render and the final assembly. They override any aesthetic default that conflicts.
 
 If no product was named (generic Zoho marketing page):
 
@@ -117,7 +122,7 @@ Auto-detect which sections the page needs based on the page type and
 content. Don't make the user list sections. Propose the order in plain
 text:
 
-> "Here's what I'd build for your Shift landing page, in this order:
+> "Here's what I'd build for your landing page, in this order:
 > Hero → Logo cloud → Features (3-up) → How it works → Pricing teaser
 > → Testimonials → FAQ → CTA → Footer. Want me to add, remove, or
 > reorder anything?"
@@ -142,7 +147,7 @@ Each variant must use:
 - The chosen aesthetic's typography, spacing, and radius vocabulary
 - ODS color tokens (from Step 3) for color
 - Real user content — actual headlines, actual feature names, actual names
-- For Shift pages, all `shift-visual-language` TOP RULES
+- For pages with a product visual-language skill loaded, all its TOP RULES
 
 **Before the first `show_widget` call** in the session, call
 `visualize:read_me` with the `mockup` module so you have the host's
@@ -163,8 +168,8 @@ up as the safest variant, **always order variants this way:**
 - **Variant A** — the most editorially daring ODS-compatible option:
   asymmetric, off-axis, oversized, full-bleed brand, or
   composition-breaking. Push to the edge of what's defensible for the
-  audience while staying inside ODS rules and (if Shift) the
-  `shift-visual-language` discipline. Examples: full-bleed `#3940D0`
+  audience while staying inside ODS rules and (if a product visual-language
+  skill is loaded) its discipline. Examples: full-bleed `var(--brand)`
   banner hero, asymmetric 60/40 split with offset visual, oversized
   pull-quote testimonial at 56px headline-scale, bento grid with one
   hero feature taking 60% width.
@@ -208,7 +213,7 @@ just less editorial flair than a Linear-style developer tool.
 
 The default bias is **daring within ODS**: asymmetric splits, full-bleed
 brand banners, oversized type, editorial layouts. Never things that
-violate `shift-visual-language` or core ODS rules.
+violate the active product visual-language skill or core ODS rules.
 
 ### 5c. The CTA rule across all variants
 
@@ -218,23 +223,26 @@ In every variant, every primary CTA uses the values from `cta.json`:
 - Border radius: 4px
 - Hover/active/focus states: as defined in `cta.json`
 
-**Never use the brand color (Shift indigo `#3940D0`, future CRM color, etc.)
-on a CTA.** This rule survives all aesthetic choices and all product themes.
+**Never use the product brand color (whatever the product's `var(--brand)` resolves to) on a CTA.** This rule survives all aesthetic choices and all product themes.
 The brand color goes on banners, surfaces, and accents — never on a button.
 
-### 5d. The animation rule for Shift pages
+### 5d. The animation rule when a product visual-language is loaded
 
-If `shift-visual-language` is loaded, every variant must respect:
+If a product visual-language skill is loaded for the named product, every
+variant must respect its motion rules. Common patterns include:
+
 - No entrance animations on page load
 - No scroll-triggered reveals
 - No parallax or sticky-scroll sections
-- Hover states only — tint shifts and 4px arrow translates
+- Hover states only — tint shifts and small (4px) translation moves
 
-Even if the aesthetic suggests "subtle scroll-triggered reveals" (Modern
-Minimal) or "fast snappy transitions" (Tech/Cyberpunk) or "spring-feel
-with overshoot" (Playful) — the Shift product rule wins.
+Even if the picked aesthetic suggests "subtle scroll-triggered reveals"
+(Modern Minimal) or "fast snappy transitions" (Tech/Cyberpunk) or
+"spring-feel with overshoot" (Playful) — the product's visual-language
+rules win.
 
-For non-Shift Zoho pages, the aesthetic's motion vocabulary applies.
+For products without a visual-language skill, the picked aesthetic's
+motion vocabulary applies directly.
 
 ### 5e. The variant selection UI
 
@@ -327,10 +335,10 @@ Before calling `present_files`, every box must be checked:
 
 - [ ] CTAs use `var(--cta)` — never the brand color, never an aesthetic accent
 - [ ] Brand color (`var(--brand)`) appears on banners, accents, link highlights — never on a button
-- [ ] If Shift page: at least one solid `#3940D0` banner and at least one dark `#161B63` section
+- [ ] If the product visual-language requires it: at least one full-bleed brand banner section and at least one dark surface section
 - [ ] Type uses Zoho Puvi (or fallback `'Zoho Puvi', 'Inter', system-ui`)
 - [ ] Border radius uses ODS scale: 0, 4, 8, 12, or 999 (never 16, 20, 24)
-- [ ] No entrance animations on Shift pages; aesthetic motion otherwise
+- [ ] If a product visual-language skill is loaded with motion rules, those rules are followed; otherwise aesthetic motion applies
 - [ ] Mobile-responsive at 380px / 768px / 1280px
 - [ ] WCAG AA color contrast for body text
 - [ ] Real copy throughout — no Lorem ipsum, no `[Your tagline here]`
@@ -343,30 +351,35 @@ Before calling `present_files`, every box must be checked:
 - `references/sections.md` — section archetypes for landing/feature/pricing/about pages, plus default section orders
 - `references/design-system-source.md` — fetch contract for ODS tokens from the marketplace repo
 
-## Working with `shift-visual-language`
+## Working with product visual-language skills
 
-When this skill builds a Shift page, `shift-visual-language` is loaded
-in parallel. Their relationship:
+When this skill builds a page for a product that has its own
+visual-language skill, both load together. Their relationship:
 
 | Layer | What it provides |
 |---|---|
-| `shift-visual-language` | Shift's TOP RULES, brand-vs-CTA rule, banner spec, dark theme rhythm, animation discipline |
+| Product visual-language skill (when one exists) | Product-specific TOP RULES, brand-vs-CTA rule, banner spec, dark theme rhythm, animation discipline |
 | `ods-page-builder` (this skill) | Page assembly flow, variant picking, section plan, layout vocabulary |
-| `design-system/themes/shift.json` | Raw color values (primary scale, surface-dark) |
-| `design-system/components/cta.json` | CTA spec (states, sizes, radii) |
+| `design-system/themes/<product>.json` | Raw color values (primary scale, surface-dark, gradient stops if defined) |
+| `design-system/components/cta.json` | CTA spec (states, sizes, radii) — universal across products |
 
-When rules conflict between this skill's aesthetic and `shift-visual-language`,
-the product rule wins. Specifically: animation defaults from the aesthetic
-are overridden by `shift-visual-language`'s "no entrance animations" rule.
+When rules conflict between this skill's aesthetic and the product
+visual-language skill, the product rule wins. Specifically: animation
+defaults from the aesthetic are overridden by any "no entrance animations"
+rule the product visual-language defines.
+
+For products without a visual-language skill, this skill operates with
+just the picked aesthetic + the product's theme tokens (or ODS Light
+defaults if no theme exists yet).
 
 ## Anti-patterns to refuse
 
 If you find yourself producing any of these, stop:
 
-- **Brand color on a CTA.** `var(--cta)` is ODS blue. The brand color (Shift indigo, etc.) goes on banners and accents.
+- **Brand color on a CTA.** `var(--cta)` is ODS blue. The product brand color (whatever `var(--brand)` resolves to for this product) goes on banners and accents.
 - **Three cosmetic shuffles as "variants."** Variants must differ on layout DNA — composition, focal element, content positioning.
 - **Aesthetic accent overriding ODS.** "Tech/Cyberpunk says lime accent" — no, the accent comes from ODS, the aesthetic provides the layout/rhythm/typography.
 - **Hardcoded hex values in the final CSS.** Use semantic tokens (`var(--cta)`, `var(--brand)`, `var(--fg-primary)`). Hex only in the `:root` declaration.
 - **The AI stack.** Centered hero → 3-column features → centered testimonial → centered pricing → centered CTA. All variants for adjacent sections must differ on alignment, density, or composition shape.
 - **Lorem ipsum.** Use real user content. If something is missing, ask once.
-- **Imagined product UI.** Use real Shift screenshots from `themes/shift.json` references when available; for other products, use placeholder containers labeled with product UI intent.
+- **Imagined product UI.** Use real product screenshots from the product's design assets when available; for products without accessible screenshots, use placeholder containers labeled with the product UI intent (e.g., "Calendar week-view scheduling UI", "Pipeline stage board"). Don't invent fake UIs.

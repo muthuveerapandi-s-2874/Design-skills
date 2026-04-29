@@ -33,7 +33,7 @@ design-system/
 ├── components/
 │   └── cta.json
 ├── themes/
-│   └── shift.json
+│   └── shift.json    (additional product themes added here as products onboard)
 └── tokens/
     ├── color/
     │   └── colors.json
@@ -59,14 +59,14 @@ actual content from the raw URL).
 
 ### Step 1: Identify the brand theme
 
-If the user named a Zoho product (e.g., "Shift signup page"):
+If the user named a Zoho product (any product in the Zoho family):
 
 ```
-https://raw.githubusercontent.com/muthuveerapandi-s-2874/design-skills-marketplace/main/design-system/themes/shift.json
+https://raw.githubusercontent.com/muthuveerapandi-s-2874/design-skills-marketplace/main/design-system/themes/<product>.json
 ```
 
-For other products, replace `shift` with the product name (e.g.,
-`crm.json`). If the file 404s, the product theme hasn't been onboarded
+Replace `<product>` with the product name (e.g., `shift.json`, `crm.json`,
+`books.json`). If the file 404s, the product theme hasn't been onboarded
 yet — use ODS-wide defaults (Step 2).
 
 If the user did NOT name a product, skip to Step 2.
@@ -101,7 +101,7 @@ https://raw.githubusercontent.com/muthuveerapandi-s-2874/design-skills-marketpla
 ## Token names this skill uses (matching ODS semantic conventions)
 
 This skill uses the same semantic token names as your design system's
-`shift.css` and `.cursorrules`. These are the names that appear in the
+design system's CSS files (e.g., the per-product theme CSS) and `.cursorrules`. These are the names that appear in the
 generated `styles.css` `:root` block and in `var(...)` references.
 
 ### Color tokens — what they're for
@@ -113,9 +113,9 @@ generated `styles.css` `:root` block and in `var(...)` references.
 | `--cta-active`, `--cta-focus` | CTA active and focus states |
 | `--canvas` | Default page background — usually white |
 | `--surface` | Alternating section background — subtle off-white |
-| `--brand` | Product brand color (Shift indigo, future CRM color, etc.) — used for banners, accents, link highlights. Resolves per product. **Never on a CTA button.** |
+| `--brand` | Product brand color — used for banners, accents, link highlights. Resolves per product (a deep indigo, a warm red, a forest green, etc.). **Never on a CTA button.** |
 | `--brand-hover` | Brand surface hover state |
-| `--surface-dark` | Dark theme section background — varies per product. For Shift, `#161B63`. |
+| `--surface-dark` | Dark theme section background — varies per product. Resolves to whatever the product's theme defines. |
 | `--fg-primary` | Headlines, primary text on light surfaces |
 | `--fg-secondary` | Sub-headlines |
 | `--fg-tertiary` | Body paragraphs |
@@ -124,21 +124,15 @@ generated `styles.css` `:root` block and in `var(...)` references.
 | `--success`, `--warning`, `--error`, `--info` | Status colors |
 | `--line` | Card borders, neutral strokes |
 | `--line-active` | Active flow paths, focus borders |
-| `--light-gradient-top`, `--light-gradient-bottom` | Light banner gradient stops (Shift-specific surface) |
 
 ### How to resolve tokens from the source
 
-For a Shift page, the resolution flow:
+For any named Zoho product, the resolution flow:
 
-1. Read `themes/shift.json`. The `colors` object has 11 families × 11 shades.
-2. Resolve `--brand` to `colors.primary.500` (`#3940D0` for Shift)
-3. Resolve `--brand-hover` to `colors.primary.600` (`#2F35B0`)
-4. Resolve `--surface-dark` to the Shift-specific dark surface — note that
-   for Shift, `#161B63` is between `primary-800` and `primary-900` on the
-   scale. It's a custom semantic token (not a scale step). If the source
-   defines it explicitly, use that. If not, use `#161B63` (well-known Shift value).
-5. Resolve `--light-gradient-top` to `colors.primary.200` (`#B4BCEE`)
-6. Resolve `--light-gradient-bottom` to `colors.primary.50` (`#EEF0FB`)
+1. Read `themes/<product>.json`. The `colors` object has 11 families × 11 shades — the standard ODS scale convention.
+2. Resolve `--brand` to `colors.primary.500` (the product's brand color at full saturation)
+3. Resolve `--brand-hover` to `colors.primary.600` (one step deeper than brand)
+4. Resolve `--surface-dark` to the product's preferred dark section background. The product theme should define this explicitly as a custom semantic token (it usually doesn't fall on a scale step — most products pick a specific dark hex that sits between two scale values, e.g., between `primary-800` and `primary-900`). If the theme doesn't define it explicitly, fall back to `colors.primary.900`.
 
 For CTA tokens:
 
@@ -149,19 +143,19 @@ For CTA tokens:
 For ODS neutrals (text, surface, line):
 
 1. Read `tokens/color/colors.json`
-2. `--fg-primary` → for Shift, use `#161B63` (matches the dark surface, which is the heading color in Shift visual language). For other products, use `colors.gray.900` or equivalent.
+2. `--fg-primary` → check the product theme first. Some products derive `--fg-primary` from `--surface-dark` (so headings on white surfaces match the dark surface color visually). Others use the ODS-wide neutral `colors.gray.900`. Default fallback: `colors.gray.900` from `tokens/color/colors.json`.
 3. `--fg-secondary` → `colors.gray.400` or equivalent
 4. `--fg-tertiary` → `colors.gray.700` or equivalent
 5. `--canvas` → white
 6. `--surface` → `colors.gray.50` (alt section background)
-7. `--line` → `colors.gray.200` (or `colors.slate.300` for Shift if specified)
+7. `--line` → `colors.gray.200` (or a product-specific override if the product theme defines one — e.g., a tinted border color from the product's own neutral scale)
 
 ---
 
 ## Critical rule — CTA color does not change per product
 
 Every Zoho product uses ODS blue `#0047FF` for the primary CTA fill.
-The brand color (Shift indigo `#3940D0`, etc.) lives on banners, surfaces,
+The product brand color (whatever `var(--brand)` resolves to for this product) lives on banners, surfaces,
 and accents — **never on a CTA button**. This is enforced by `cta.json` and
 must not be overridden by aesthetic choices or product themes.
 
@@ -194,30 +188,37 @@ feels native to the Zoho ecosystem.
 --success: #05B488;
 --warning: #E14F06;
 --error: #BA0530;
---info: #3940D0;
+--info: #0047FF;
 --line: #E5E5E5;
 --line-active: var(--brand);
---light-gradient-top: #DCE0F7;
---light-gradient-bottom: #EEF0FB;
 ```
 
-### Color fallbacks (Shift)
+### Color fallbacks (named product, theme fetch failed)
 
-If user named "Shift" but the fetch failed, use these Shift-specific values:
+If the user named a product but the theme fetch failed (network error,
+file 404), apply these fallback rules so the page is still buildable:
+
+1. Keep `--cta` and all CTA tokens at their ODS values — these never
+   change per product (`#0047FF` for `--cta`).
+2. Keep `--canvas`, `--surface`, `--success`, `--warning`, `--error`,
+   `--info`, `--line` at the generic ODS fallbacks above.
+3. Substitute these for the product brand tokens, marking it as a
+   degraded build:
 
 ```css
---brand: #3940D0;             /* Shift indigo — primary-500 */
---brand-hover: #2F35B0;       /* primary-600 */
---surface-dark: #161B63;      /* Shift dark surface */
---fg-primary: #161B63;        /* matches surface-dark — Shift heading color */
---fg-secondary: #343A66;      /* gray-400 in Shift palette */
---fg-tertiary: #55597A;       /* slate-700 in Shift palette */
---line: #D2D6EC;              /* slate-300 in Shift palette */
---line-active: var(--brand);
---light-gradient-top: #B4BCEE;     /* primary-200 */
---light-gradient-bottom: #EEF0FB;  /* primary-50 */
-/* CTA tokens unchanged — still ODS blue */
+--brand: #0047FF;        /* falls back to ODS blue */
+--brand-hover: #003BD9;
+--surface-dark: #0B0C1F;
+--fg-primary: #262626;   /* generic neutral, not product-tinted */
+--fg-secondary: #4F4F4F;
+--fg-tertiary: #595959;
+--line: #E5E5E5;
 ```
+
+The page reads as ODS-aligned but loses product brand identity. Include
+a one-line note: "Couldn't reach the design system source — building
+with ODS-aligned defaults instead of the product brand. Rerun with web
+access to pull live tokens."
 
 ### Type fallbacks
 
@@ -258,19 +259,19 @@ Container max-width: 1200px (or per source if specified)
 
 ## Behavior summary
 
-A clean build for a **named Zoho product** (e.g., "build me a Shift landing page"):
+A clean build for a **named Zoho product**:
 
 1. Read `SKILL.md`, arrive at the brand-tokens step
 2. Read this file (`design-system-source.md`)
 3. Call `web_fetch` against:
-   - `themes/shift.json` for product brand colors
+   - `themes/<product>.json` for product brand colors
    - `tokens/color/colors.json` for ODS-wide neutrals
    - `components/cta.json` for the CTA spec
    - `tokens/typography/typography.json` for the type scale
 4. Map source values into the skill's token names by role
 5. Compose the inline `:root` block using those values
-6. Build the page — CTAs are ODS blue, accents are Shift indigo, surfaces and text use ODS-wide neutrals
-7. If Shift, also load `shift-visual-language` rules and apply throughout
+6. Build the page — CTAs are ODS blue (universal), accents are the product's brand color, surfaces and text use ODS-wide neutrals
+7. If a visual-language skill exists for that product, also load and apply its rules throughout
 
 A clean build for a **generic Zoho marketing page** (no product named):
 
