@@ -65,21 +65,29 @@ fewer variants (two layout choices: editorial column vs. timeline format).
 
 ## Hero
 
-The first impression. Choose archetypes that differ on focal element and composition.
+The first impression. Choose archetypes that differ on focal element and composition. **Order Variant A as the most daring, Variant C as the safest** (per `SKILL.md` Step 5b).
 
-- **Split asymmetric** — copy ~55% on left, product UI/screenshot/illustration ~45% on right; vertical alignment offset (text top-aligned, visual slightly below center)
-- **Centered + product below** — headline + subhead + CTA centered, generous whitespace, large product screenshot or device mockup below
-- **Editorial stacked** — eyebrow label, then very large display headline taking 2-3 lines, supporting paragraph, CTA — all left-aligned in a narrow column, no visual aid
-- **Solid brand banner** *(for Shift)* — full-bleed `#3940D0` indigo background, white headline + ODS blue CTA. Banner-style hero specific to Shift's visual language.
-- **Light gradient banner** *(for Shift)* — full-bleed `linear-gradient(180deg, #B4BCEE 0%, #EEF0FB 100%)`, dark text + ODS blue CTA. Banner-style hero for inner Shift pages.
-- **Inverted dark hero** — dark surface (uses `var(--surface-dark)` / `#161B63` for Shift), white text, brand accent for highlights
-- **Split with form** — copy on left, signup/CTA form on right (good for tools, newsletters, waitlists)
-- **Side-by-side comparison** — "Before/After" or "Without us / With us" two-column visual hero
+### Daring options (Variant A candidates)
 
-For Shift pages: prefer the **Solid brand banner** or **Light gradient banner**
-options on the home/main pages, since they match the established Shift visual
-language. Inner pages (feature, pricing) typically use Light gradient or
-Editorial stacked.
+- **Solid brand banner** *(for Shift)* — full-bleed `#3940D0` indigo background, white headline + ODS blue CTA. The most distinctive Shift-specific hero. Banner takes the entire hero section.
+- **Split asymmetric (60/40 with offset)** — copy ~55% on left, product UI/screenshot ~45% on right, vertical alignment offset (text top-aligned, visual pulled slightly below center for tension). The asymmetry creates focus.
+- **Inverted dark hero** — full-bleed dark surface (`var(--surface-dark)` / `#161B63` for Shift), oversized white headline (96px+), brand accent for highlights. Confident and editorial.
+- **Hero with sample artifact** — copy on one side, the actual product output on the other (a sample week-view schedule with real names, a sample shift-swap message thread). The hero IS the product.
+
+### Editorial / text-led options (Variant B candidates)
+
+- **Editorial stacked** — eyebrow label, then very large display headline (80px+) taking 2-3 lines, supporting paragraph, CTA — all left-aligned in a narrow column, no visual aid. The headline is the hero.
+- **Light gradient banner** *(for Shift)* — full-bleed `linear-gradient(180deg, #B4BCEE 0%, #EEF0FB 100%)`, dark text + ODS blue CTA. Inner-page Shift hero pattern.
+- **Split with form** — copy on left, signup/CTA form on right (good for tools, newsletters, waitlists). The form makes interaction the focal point.
+
+### Safe options (Variant C — the "AI default")
+
+- **Centered + product below** — headline + subhead + CTA centered, generous whitespace, large product screenshot below. The pattern users have seen on every other SaaS site. **Use sparingly** — only when the user explicitly wants conventional, or when the brief requires maximum approachability.
+- **Side-by-side comparison** — "Before/After" or "Without us / With us" two-column hero. Conservative but informative.
+
+### For Shift pages
+
+Strongly prefer the **Solid brand banner** (home / main pages) or **Light gradient banner** (inner pages) for at least one of the three variants — they match the established Shift visual language and are signature Shift moments. The Inverted dark hero is also Shift-native (uses `#161B63` surface). Centered + product below is rarely the right answer on a Shift page; if it appears, it should be Variant C.
 
 ## Logo cloud (social proof bar)
 
@@ -90,16 +98,28 @@ Editorial stacked.
 
 ## Features
 
-The core content section. Choose 3 archetypes that vary on composition, density, and direction.
+The core content section. Choose 3 archetypes that vary on composition, density, and direction. **Order Variant A as the most daring, Variant C as the safest** (per `SKILL.md` Step 5b).
 
-- **3-up grid** — three columns, each with icon + heading + 1–2 sentence description
-- **Bento grid** — irregular grid (one large card + several smaller), each card a distinct feature with visual
-- **Alternating left/right** — vertical stack of feature blocks, each alternating image left/right with copy on the other side
-- **Tabbed deep-dive** — section title + horizontal tabs, picking a tab swaps the visual *(use sparingly on Shift pages — no scroll-jacking flow disruption)*
-- **Sticky scroll** — left side stays put with feature title, right side scrolls through visuals *(skip on Shift pages — sticky is a form of scroll-jacking)*
-- **List with media** — left-side vertical list of features (titles + 1-line descriptions), right-side a single large media that swaps based on which list item is hovered/active
-- **Numbered steps** — features as numbered cards (01, 02, 03), implying progression
-- **Icon wall** — many small features in a 4×N grid with just icon + label, for "everything you get"
+### Daring options (Variant A candidates)
+
+- **Bento grid (one hero feature + supporting)** — irregular grid where one card is 60% of the grid width and contains a feature with a visual mockup; surrounding smaller cards cover supporting features. Creates visual hierarchy automatically — the biggest card is the most important feature. Inspired by Apple's bento layouts as adopted by Linear, Vercel, Notion.
+- **Alternating left/right with offset images** — vertical stack of feature blocks, each alternating image left/right with copy on the other side. Image positions are slightly offset (not flush — pulled toward the gutter or beyond the grid line) for editorial feel.
+- **Annotated single feature** — one feature gets the full section: a real product screenshot with numbered annotation pins (1, 2, 3) calling out specific UI parts. Other features link to dedicated pages. The single-screenshot focus is striking when the feature is genuinely the headline.
+
+### Editorial / text-led options (Variant B candidates)
+
+- **List with media** — left-side vertical list of features (titles + 1-line descriptions), right-side a single large media that swaps based on which list item is hovered or active. Editorial because the typography of the list IS the design.
+- **Tabbed deep-dive** — section title + horizontal tabs, picking a tab swaps a large content panel (visual + headline + bullets). Each tab gets editorial treatment in its panel. *(For Shift pages, ensure tab-switch is instant; no animated transitions per `shift-visual-language`.)*
+
+### Safe options (Variant C — the "AI default")
+
+- **3-up grid** — three columns, each with icon + heading + 1–2 sentence description. The most-seen pattern in SaaS marketing. Use only when the features genuinely have peer importance and the brief calls for maximum scanability.
+
+### Cut from the catalog (overlap with stronger options)
+
+- *Numbered steps as feature cards* — overlaps too much with 3-up grid. Use the "How it works" section for actual sequential steps; don't disguise features as steps.
+- *Icon wall (4×N small features)* — overlaps with 3-up grid; "many small features" is rarely a brief that needs visual distinction. If the brief is "everything you get", use a comparison table instead.
+- *Sticky scroll* — explicitly forbidden for Shift pages (scroll-jacking violates `shift-visual-language` rules). Don't include even as Variant A on Shift pages.
 
 ## How it works / Process
 
@@ -110,12 +130,27 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 
 ## Testimonials / Social proof
 
-- **3-up cards** — three quote cards in a row, each with quote + name + role + avatar
-- **Single large quote** — one massive pulled quote dominating the section, attributed below
-- **Marquee of quotes** — many small quote cards scrolling horizontally *(skip on Shift pages — motion rule)*
-- **Masonry grid** — 6–8 testimonial cards of varying heights in a Pinterest-style grid
-- **Logo + quote pair** — one column logo, one column quote — repeats vertically for several customers
-- **Stats + testimonial** — large stat ("4.9/5 from 2,000 reviews") paired with a single supporting quote
+**Order Variant A as the most daring, Variant C as the safest** (per `SKILL.md` Step 5b).
+
+### Daring options (Variant A candidates)
+
+- **Single oversized pull quote** — one massive pulled quote dominating the section, set in display type at 40-60px (headline-scale), centered or asymmetric. The attribution sits small below. The quote is treated as editorial copy, not a card. Premium feel.
+- **Stats + testimonial** — large stat ("4.9/5 from 2,000 reviews" or "12× faster scheduling") paired with a single supporting quote alongside. Combines qualitative and quantitative proof in one section. Strong for B2B.
+- **Editorial woven** — testimonials embedded inside feature explanations rather than a dedicated section. "Here's how X works — and here's how [Customer] used it to do Y." Reduces page length and makes testimonial feel like proof, not pageantry.
+
+### Editorial / text-led options (Variant B candidates)
+
+- **Logo + quote pair** — one column logo, one column quote. Repeats vertically for 3-4 customers. The logo grounds the quote.
+- **Masonry grid** — 6–8 testimonial cards of varying heights in a Pinterest-style grid. Variation in height creates visual rhythm. Less templated than a clean 3-up.
+
+### Safe options (Variant C — the "AI default")
+
+- **3-up cards** — three quote cards in a row, each with quote + name + role + avatar. The most-seen pattern in SaaS. Use when the brief calls for breadth (multiple validators) over depth (one strong story).
+
+### Cut from the catalog (forbidden or weak)
+
+- *Marquee of quotes* — explicitly forbidden on Shift pages (motion / scroll-triggered animation violates `shift-visual-language`). Don't include even as Variant A on Shift pages.
+- *Carousel of stories* — adds JS complexity; static page builders shouldn't reach for this unless the brief specifically requires it.
 
 ## Stats / Metrics
 
@@ -126,12 +161,26 @@ The core content section. Choose 3 archetypes that vary on composition, density,
 
 ## Pricing
 
-- **3-tier cards** — three plan cards side-by-side, middle one elevated/highlighted as recommended (the canonical Zoho pattern)
-- **2-tier with comparison table below** — two main tiers + a detailed feature comparison table underneath
-- **3-tier + Enterprise contact card** — 3 priced tiers + a fourth "Custom"/"Talk to sales" card without a price
-- **Annual/monthly toggle + tiers** — standard tiers with a billing-period switch above
+**Order Variant A as the most daring, Variant C as the safest** (per `SKILL.md` Step 5b).
 
-CTA on every pricing card: `var(--cta)` (ODS blue), regardless of tier.
+### Daring options (Variant A candidates)
+
+- **Comparison-led** — skip the plan cards entirely; lead with the full feature × tier matrix. Each plan is a column header with price + CTA at the top. Best when buyers want to compare features more than they want to be sold. Editorial and confident.
+- **Single hero plan + add-on toggles** — for products with one primary plan, show that plan's price prominently and list optional add-ons below. Cleaner than fake-tiering when there's really just one product.
+- **Calculator-driven** — sliders or inputs that let the user model their cost based on volume. Real-time price calculation. Strong for usage-priced products. *(For Shift pages, the calculator must be no-animation — instant updates only.)*
+
+### Editorial / text-led options (Variant B candidates)
+
+- **2-tier with comparison table below** — two main tiers as cards + a detailed feature comparison table underneath. Combines the at-a-glance familiarity of cards with the depth of comparison. Honest about trade-offs.
+- **3-tier + Enterprise contact card** — 3 priced tiers + a fourth "Custom"/"Talk to sales" card without a price. Acknowledges enterprise buyers as a separate motion. Common pattern, executed well it doesn't feel like an afterthought.
+
+### Safe options (Variant C — the "AI default")
+
+- **3-tier cards** — three plan cards side-by-side, middle one elevated/highlighted as recommended (the canonical Zoho pattern). Use when the audience is conventional and quick comparison matters more than depth.
+
+### CTA discipline on every Pricing variant
+
+CTA on every pricing card: `var(--cta)` (ODS blue), regardless of tier or aesthetic.
 
 ## Comparison table
 
@@ -146,13 +195,29 @@ CTA on every pricing card: `var(--cta)` (ODS blue), regardless of tier.
 
 ## CTA (final push before footer)
 
-- **Centered with one CTA** — large headline + subhead + single CTA button, lots of whitespace
-- **Centered with two CTAs** — primary + secondary CTA pair (e.g., "Start free trial" + "Talk to sales")
-- **CTA with form** — headline + inline email signup form
-- **Full-bleed brand banner** *(for Shift)* — solid `#3940D0` background or light gradient, headline + ODS blue CTA — bookend matches the hero pattern
+**Order Variant A as the most daring, Variant C as the safest** (per `SKILL.md` Step 5b).
 
-For Shift pages, the final CTA section is typically a **Full-bleed brand banner**
-matching the hero, creating bookend symmetry.
+### Daring options (Variant A candidates)
+
+- **Full-bleed brand banner** *(for Shift)* — solid `#3940D0` background or light gradient banner, oversized headline (80px+) + ODS blue CTA. Bookends the hero — opens and closes the page on the same surface. The most distinctive Shift-native CTA. Confident and singular.
+- **Asymmetric with visual** — 60/40 split — headline + CTA on one side, a final visual or testimonial on the other. Less in-your-face than a full banner but more interesting than centered.
+
+### Editorial / text-led options (Variant B candidates)
+
+- **CTA with form** — headline + inline email signup form. Reduces friction by making the CTA the action itself, not a button-to-page. Good for free-trial products.
+- **Quiet left-aligned** — for premium / enterprise positioning where shouting feels off-brand. Simple "Ready to see it in action? [Book a demo]" left-aligned with generous whitespace.
+
+### Safe options (Variant C — the "AI default")
+
+- **Centered with one CTA** — large headline + subhead + single CTA button, lots of whitespace. The most-seen CTA pattern. Confident if the headline earns its size; bland if it doesn't.
+
+### Cut from the catalog
+
+- *Centered with two CTAs* — most pages have one primary action. Two equally-weighted buttons hedge the conversion. Use only if the page genuinely has two equally-important actions (e.g., "Start trial" AND "Book demo" for a product with both self-serve and sales-led motions).
+
+### For Shift pages
+
+The final CTA section is typically the **Full-bleed brand banner** — bookending the hero creates symmetry that's part of Shift's visual language.
 
 ## Footer
 

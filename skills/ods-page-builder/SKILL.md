@@ -153,7 +153,64 @@ is the rendering substrate, not the style guide).
 Render each variant in its own `show_widget` call so the user sees them
 as three separate visuals to compare.
 
-### 5b. The CTA rule across all variants
+### 5b. Variant ordering — A is daring, B is editorial, C is safe
+
+The order in which you present the three variants matters. Most users
+will mentally evaluate them top-to-bottom and absorb the safest option
+as default. To prevent the "AI stack" rhythm where every section ends
+up as the safest variant, **always order variants this way:**
+
+- **Variant A** — the most editorially daring ODS-compatible option:
+  asymmetric, off-axis, oversized, full-bleed brand, or
+  composition-breaking. Push to the edge of what's defensible for the
+  audience while staying inside ODS rules and (if Shift) the
+  `shift-visual-language` discipline. Examples: full-bleed `#3940D0`
+  banner hero, asymmetric 60/40 split with offset visual, oversized
+  pull-quote testimonial at 56px headline-scale, bento grid with one
+  hero feature taking 60% width.
+
+- **Variant B** — the most editorial / text-led / typographically
+  expressive option: large display type, narrow content column,
+  generous whitespace, asymmetric layout where text is the focal
+  element. Examples: editorial stacked hero with no visual, single
+  oversized testimonial quote, hero-stat with paragraph wrapping
+  around it.
+
+- **Variant C** — the safest, most familiar option: centered, gridded,
+  conventional. The pattern users have seen on every other SaaS
+  site. Examples: centered headline + product screenshot below,
+  3-up feature card grid, 3-up testimonial cards, 3-tier pricing cards.
+
+**Never order three safe options as A/B/C.** If you cannot generate a
+genuinely daring Variant A that respects ODS + product rules, say so
+explicitly to the user — don't substitute another safe option.
+
+This rule applies to the five **load-bearing sections** where design
+character matters most:
+- **Hero**
+- **Features**
+- **Testimonials**
+- **Pricing**
+- **CTA (final push)**
+
+For utility sections (footer, logo wall, FAQ, navigation, stats band),
+the daring rule is overkill — present three reasonable options in any
+order. These sections are functional, not signature design moments.
+
+#### Audience-aware softening
+
+If the user mentions a **conservative audience** (healthcare, finance,
+government, enterprise compliance) in the brief, you can soften
+Variant A — but keep at least one structurally distinct option per set.
+Don't collapse all three variants into safe defaults. A healthcare
+landing page can still have an asymmetric hero or an oversized stat —
+just less editorial flair than a Linear-style developer tool.
+
+The default bias is **daring within ODS**: asymmetric splits, full-bleed
+brand banners, oversized type, editorial layouts. Never things that
+violate `shift-visual-language` or core ODS rules.
+
+### 5c. The CTA rule across all variants
 
 In every variant, every primary CTA uses the values from `cta.json`:
 - Primary fill: ODS blue `#0047FF`
@@ -165,7 +222,7 @@ In every variant, every primary CTA uses the values from `cta.json`:
 on a CTA.** This rule survives all aesthetic choices and all product themes.
 The brand color goes on banners, surfaces, and accents — never on a button.
 
-### 5c. The animation rule for Shift pages
+### 5d. The animation rule for Shift pages
 
 If `shift-visual-language` is loaded, every variant must respect:
 - No entrance animations on page load
@@ -179,7 +236,7 @@ with overshoot" (Playful) — the Shift product rule wins.
 
 For non-Shift Zoho pages, the aesthetic's motion vocabulary applies.
 
-### 5d. The variant selection UI
+### 5e. The variant selection UI
 
 After rendering the three variants, write a one-line note for each
 ("A is bold and editorial, B is calm and product-forward, C is moody
@@ -192,7 +249,7 @@ and image-led") and use `ask_user_input_v0` with options:
 If the user picks "None," generate three new archetypes (different from
 the first three) and re-present.
 
-### 5e. Track picks and keep momentum
+### 5f. Track picks and keep momentum
 
 When the user picks, briefly acknowledge it and move to the next section.
 Don't re-render the picked variant on its own. Track picks internally:
@@ -202,7 +259,42 @@ Don't re-render the picked variant on its own. Track picks internally:
 - Features: Variant C
 - ...
 
-### 5f. Fatigue checkpoint
+### 5g. Rhythm intervention every 3 picks
+
+Before generating variants for section N+3, look at the cumulative picks
+for sections N, N+1, N+2. If the user has picked the same alignment,
+density, or composition shape for 3 sections in a row, your next 3
+variants MUST include at least one option that breaks that pattern.
+
+When you make this intervention, name it explicitly so the user knows
+it's deliberate:
+
+> "I noticed you've picked centered layouts for the last 3 sections. For
+> visual rhythm, I'm including a left-aligned editorial option as
+> Variant A here."
+
+This isn't optional. The page-level rhythm rule is what separates
+designed pages from AI-stack output: every 3 sections back-to-back that
+share alignment + composition shape collapse the page into "competent
+but expected" — even when each individual section was a reasonable
+choice.
+
+**What to track across picks:**
+- Alignment (left / centered / asymmetric / off-axis)
+- Density (sparse with whitespace / dense with content)
+- Background (white / brand banner / dark / light gradient)
+- Composition shape (single column / 2-col split / grid / overlap / list)
+
+A streak in any one of these dimensions is enough to trigger the
+intervention. You don't need all four to be the same — three centered
+sections in a row is a streak even if their backgrounds vary.
+
+**Soft intervention only.** Don't lecture. Don't refuse to generate.
+Just include the breaking option in the next variant set and name it
+once. The user can still pick the safe option if they want — but they're
+choosing the streak, not absorbing it as default.
+
+### 5h. Fatigue checkpoint
 
 For pages with 7+ sections, around the midpoint check in once: "We're
 halfway. Want to keep picking variants for each remaining section, or
